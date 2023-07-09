@@ -1,0 +1,12 @@
+footer{
+    min-width: 100%;
+    background-color: var(--light-yellow);
+    padding: 0.5em 3.5em;
+
+ /* *TODO: position of the footer (at the end of the page without any space between and after it) */
+}
+
+p{
+    padding: 0;
+    font-weight: 700;
+}
