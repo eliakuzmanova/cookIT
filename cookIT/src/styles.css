@@ -1,9 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,200;0,300;0,400;0,700;0,900;1,100;1,200&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Nunito+Sans:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
 :root{
+  /* COLORS */
     --black: #404040;
     --white: #F2F2F2;
     --beige: #F2E6D0;
     --light-yellow: #F2C744;
     --dark-yellow: #F2B749;
 
+    /* FONTS */
+    --Inter: 'Inter Tight', sans-serif;
+    --Lato: 'Lato', sans-serif;
+    --Nunito: 'Nunito Sans', sans-serif;
+    --Open-Sans: 'Open Sans', sans-serif;
+    --Poppins: 'Poppins', sans-serif;
+    --Roboto: 'Roboto', sans-serif;
+
+}
+
+/* ---------- RESET CSS ---------- */
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font: 12px/1.5 Inter, sans-serif;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+
+html{
+  font: 11px/1.5 var(--Lato);
+}
+
+@media (width> 400px) {
+  html{font-size: 12px;}
+}
+
+@media (width> 600px) {
+  html{font-size: 13px;}
+}
+
+@media (width> 800px) {
+  html{font-size: 16px;}
+}
+
+body, input, textarea, button, table, option, select{
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font: 1em/1.2 var(--Inter);
+  margin: 1em 0 0.5em 0;
+  padding: 0;
+}
+h1{font-size: 2.5em;}
+h2{font-size: 2.2em;}
+h3{font-size: 1.7em;}
+h4{font-size: 1.4em;}
+h5{font-size: 1.2em;}
+h6{font-size: 1em;}
+
+p{
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+
+ol, ul, dl {
+  margin: 0 0 1.5rem 0;
+}
+
+ul, ol {
+  padding: 0;
+  margin-left: 1.5rem;
 }
