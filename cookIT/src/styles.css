@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,200;0,300;0,400;0,700;0,900;1,100;1,200&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Nunito+Sans:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Inter+Tight:ital,wght@0,200;0,300;0,400;0,700;0,900;1,100;1,200&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Nunito+Sans:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root{
   /* COLORS */
@@ -11,7 +11,7 @@
     /* FONTS */
     --Inter: 'Inter Tight', sans-serif;
     --Lato: 'Lato', sans-serif;
-    --Nunito: 'Nunito Sans', sans-serif;
+    --Dancing: 'Dancing Script', cursive;
     --Open-Sans: 'Open Sans', sans-serif;
     --Poppins: 'Poppins', sans-serif;
     --Roboto: 'Roboto', sans-serif;
@@ -30,7 +30,8 @@
 
 body {
   min-height: 100vh;
-  font: 12px/1.5 Inter, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 ul[role='list'],
@@ -47,7 +48,7 @@ picture {
 /* ---------- TYPOGRAPHY ---------- */
 
 html{
-  font: 11px/1.5 var(--Lato);
+  font: 11px/1.5 var(--Poppins);
 }
 
 @media (width> 400px) {
@@ -67,7 +68,7 @@ body, input, textarea, button, table, option, select{
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font: 1em/1.2 var(--Inter);
+  font: 1em/1.2 var(--Dancing);
   margin: 1em 0 0.5em 0;
   padding: 0;
 }

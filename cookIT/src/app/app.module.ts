@@ -5,18 +5,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MainComponent } from './main/main.component';
+import { CatalogComponent } from './main/catalog/catalog.component';
+import { ProfileComponent } from './main/profile/profile.component';
+import { LoginComponent } from './main/auth/login/login.component';
+import { RegisterComponent } from './main/auth/register/register.component';
+import { LogoutComponent } from './main/auth/logout/logout.component';
+import { DetailsComponent } from './main/details/details.component';
+import { NotFoundComponent } from './main/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MainComponent
+    CatalogComponent,
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent,
+    DetailsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
