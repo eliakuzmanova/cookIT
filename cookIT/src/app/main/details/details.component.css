@@ -1,0 +1,75 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin: 1em auto;
+}
+h1{
+    text-align: center;
+    font-size: 3.2em;
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    color: var(--black);
+
+}
+.meal-container div{
+    border-radius: 2em;
+    height: 25em;
+    margin-bottom: 2em;
+    overflow: hidden;
+}
+.meal-container div img{
+    border: 2px solid var(--light-yellow);
+    padding: 1em;
+    border-radius: 2em;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prep-container{
+    background-color: var(--black);
+    display: flex;
+    width: 55%;
+    margin: 0 auto;
+    gap: 1em;
+    justify-content: center;
+    padding: 0.5em;
+    margin-bottom: 2em;
+}
+.time-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+.time-container p{
+    padding: 0.4em;
+    color: var(--beige);
+}
+
+.time-title{
+    font-weight: 500;
+}
+
+.ingredients-container, .directions-container{
+background-color: #f2e6d078;
+margin-bottom: 2em;
+padding: 1.5em 2em;
+}
+
+.ingredients-container h2, .directions-container h2{
+    color: var(--black);
+    	margin-top: 0;
+}
+.directions-container li::marker{
+    font-weight: 500;
+    font-size: 1.1em;
+} 
+
+.ingredients-container li, .directions-container li{
+    margin-bottom: 0.5em;
+    letter-spacing: 0.08em;
+    color: var(--black);
+}
