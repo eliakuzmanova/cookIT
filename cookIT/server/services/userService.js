@@ -1,10 +1,10 @@
 const User = require("../models/User");
 
-// exports.getOne = (email) => User.findOne({email}).lean();
+exports.getOne = (email) => User.findOne({email}).lean();
 
-// exports.getOneById = (userId) => User.findById(userId).lean();
+exports.getOneById = (userId) => User.findById(userId).lean();
 
-// exports.getAll = () => User.find({}).lean();
+exports.getAll = () => User.find({}).lean();
 
 // exports.getOneWithNonFollow = (id) => User.findById(id).populate("follow").lean();
 

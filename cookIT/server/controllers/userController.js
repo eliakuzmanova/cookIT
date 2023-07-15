@@ -1,31 +1,31 @@
-// const userService = require("../services/userService");
-// const recipeService = require("../services/recipeService");
+const userService = require("../services/userService");
+const recipeService = require("../services/recipeService");
 
-// exports.getOne = async (req, res) => {
+exports.getOne = async (req, res) => {
 
-//     try {
-//         const { email } = req.body
-//         const user = await userService.getOne(email);
-//         res.status(200).send(user);
+    try {
+        const { email } = req.body
+        const user = await userService.getOne(email);
+        res.status(200).send(user);
 
-//     } catch (err) {
-//         res.status(400).send(err);
-//     }
+    } catch (err) {
+        res.status(400).send(err);
+    }
 
-// }
+}
 
-// exports.getOneById = async (req, res) => {
+exports.getOneById = async (req, res) => {
 
-//     try {
-//         const { id } = req.body
-//         const user = await userService.getOneById(id);
-//         res.status(200).send(user);
+    try {
+        const { id } = req.body
+        const user = await userService.getOneById(id);
+        res.status(200).send(user);
 
-//     } catch (err) {
-//         res.status(400).send(err);
-//     }
+    } catch (err) {
+        res.status(400).send(err);
+    }
 
-// }
+}
 
 // exports.getOneByUsernameWithRel = async (req, res) => {
 
@@ -187,11 +187,11 @@
 
 //         const user = await userService.getOneById(userId)
      
-//         const allrecipes = await recipeService.getAll()
+//         const allRecipes = await recipeService.getAll()
        
 //         const follows = user.follow
 
-//         for (const recipe of allrecipes) {
+//         for (const recipe of allRecipes) {
    
 //             for (const foll of follows) {
                 
@@ -205,9 +205,9 @@
 //             }
 //         }
 
-//         const reversedrecipes = recipes.reverse();
+//         const reversedRecipes = recipes.reverse();
 
-//         res.status(200).send(reversedrecipes);
+//         res.status(200).send(reversedRecipes);
 
 //     } catch (err) {
 //         res.status(403).send(err);

@@ -1,10 +1,10 @@
-// const Recipe = require("../models Recipe");
+const Recipe = require("../models Recipe");
 
-// exports.create = (imagePath, userId, description) => Recipe.create({image:imagePath, owner:userId, description:description});
+exports.create = (imagePath, userId, description) => Recipe.create({image:imagePath, owner:userId, description:description});
 
-// exports.getOne =  RecipeId) => Recipe.findById RecipeId).lean();
+exports.getOne = (RecipeId) => Recipe.findById(RecipeId).lean();
 
-// exports.getAll = () => Recipe.find({}).populate("owner").lean();
+exports.getAll = () => Recipe.find({}).populate("owner").lean();
 
 // exports.getOneWithLikes =  RecipeId) => Recipe.findById RecipeId).populate("likes").lean();
 
