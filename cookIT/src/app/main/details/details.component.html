@@ -37,8 +37,8 @@
     </div>
 
     <div class="profile">
-        <a routerLink="/profile/:id"><img class="profile-img" [attr.src]="recipe?.author?.image" alt={{recipe?.author?.username}}></a>
-        <a routerLink="/profile/:id">{{recipe?.author?.username}}</a>
+        <a [routerLink]="['/profile/', recipe?.author?._id]"><img class="profile-img" [attr.src]="recipe?.author?.image" alt={{recipe?.author?.username}}></a>
+        <a [routerLink]="['/profile/', recipe?.author?._id]">{{recipe?.author?.username}}</a>
         <hr>
         <div class="recipes-container">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em"

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {IRecipe} from "../../interfaces/IRecipe"
+import {IRecipe} from "../../interfaces/index"
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 exports.getOne = (email) => User.findOne({email}).lean();
 
-exports.getOneById = (userId) => User.findById(userId).lean();
+exports.getOneById = (userId) => User.findById(userId).populate("recipes").lean();
 
 exports.getAll = () => User.find({}).lean();
 

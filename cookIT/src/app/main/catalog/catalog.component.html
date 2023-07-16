@@ -5,7 +5,7 @@
         </div>
         <div class="content-container">
             <a [routerLink]="['/details/', recipe._id]">{{recipe.title}}</a>
-            <a routerLink="['/profile/', recipe.author._id]">{{recipe.author.username}}</a>
+            <a [routerLink]="['/profile/', recipe.author._id]">{{recipe.author.username}}</a>
         </div>
     </div>
 </div>
