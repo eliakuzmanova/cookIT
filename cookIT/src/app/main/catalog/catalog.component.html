@@ -1,87 +1,13 @@
 <div class="container">
-    <div class="card">
+    <div *ngFor="let recipe of recipes" class="card">
         <div class="image-container">
-            <img src="../../../assets/monika-grabkowska-pCxJvSeSB5A-unsplash.jpg" alt="">
+            <img [attr.src]="recipe.image" alt={{recipe.title}}>
         </div>
         <div class="content-container">
-            <a routerLink="/details/:id">Green salad with lemon</a>
-            <a routerLink="/profile/:id">Elia Kuzmanova</a>
-        </div>
-
-    </div>
-
-    <div class="card">
-        <div class="image-container">
-            <img src="../../../assets/dani-rendina-SH6vc3VOOwE-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Müsli</a>
-            <a routerLink="/profile/:id">Lily Pertova</a>
-        </div>
-
-    </div>
-
-    <div class="card">
-        <div class="image-container">
-            <img src="../../../assets/kaouther-djouada-hcEDfkiVmMI-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Chocolate cake</a>
-            <a routerLink="/profile/:id">Master1</a>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="image-container">
-
-            <img src="../../../assets/farhad-ibrahimzade-KpOl9jV2aJM-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Chicken with sauce</a>
-            <a routerLink="/profile/:id">best Cooker 88</a>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="image-container">
-            <img src="../../../assets/karolina-kolodziejczak-OSMAK8b74ls-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Lasagna</a>
-            <a routerLink="/profile/:id">Monne</a>
-        </div>
-    </div>
-
-    <div class="card">
-
-        <div class="image-container">
-            <img src="../../../assets/michael-chiara-BLy3LMYMVvE-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Muffins</a>
-            <a routerLink="/profile/:id">Kuz</a>
-        </div>
-    </div>
-
-    <div class="card">
-
-        <div class="image-container">
-            <img src="../../../assets/michael-chiara-BLy3LMYMVvE-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Muffins</a>
-            <a routerLink="/profile/:id">Kuz</a>
-        </div>
-    </div>
-
-    <div class="card">
-
-        <div class="image-container">
-            <img src="../../../assets/michael-chiara-BLy3LMYMVvE-unsplash.jpg" alt="">
-        </div>
-        <div class="content-container">
-            <a routerLink="/details/:id">Muffins</a>
-            <a routerLink="/profile/:id">Kuz</a>
+            <a [routerLink]="['/details/', recipe._id]">{{recipe.title}}</a>
+            <a routerLink="['/profile/', recipe.author._id]">{{recipe.author.username}}</a>
         </div>
     </div>
 </div>
+
+

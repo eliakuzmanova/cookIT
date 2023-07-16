@@ -28,6 +28,16 @@ exports.getOne = async (req, res) => {
     }
 }
 
+exports.getAll = async (req, res) => {
+    try {
+       
+        const recipes = await recipeService.getAll()
+        res.status(200).send(recipes);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+
 // exports.getOneWithLikes = async (req, res) => {
 //     try {
 //         const { recipeId } = req.params
