@@ -8,28 +8,29 @@ const authController = require("../controllers/authController");
 
 
 
-router.recipe("/auth/register", authController.register)
-router.recipe("/auth/login", authController.login)
+router.post("/auth/register", authController.register)
+router.post("/auth/login", authController.login)
 
-// router.recipe("/users/getFollowsRecipes", userController.getUserWithFollow)
+// router.post("/users/getFollowsRecipes", userController.getUserWithFollow)
 
-router.recipe("/users/getOne", userController.getOne)
-router.recipe("/users/getOneById", userController.getOneById)
-// router.recipe("/users/getOneWithRelations", userController.getOneByUsernameWithRel)
-// router.recipe("/users/getOneWithNonFollow", userController.getOneWithNonFollow)
-// router.recipe("/users/addFollower", userController.addFollower)
-// router.recipe("/users/removeFollower", userController.removeFollower)
-// router.recipe("/users/delete", userController.deleteUser)
-// router.recipe("/profile/edit", upload.single("image"),userController.editProfile)
+// router.post("/users/getOne", userController.getOne)
+router.post("/users/getOneById", userController.getOneById)
+// router.post("/users/getOneWithRelations", userController.getOneByUsernameWithRel)
+// router.post("/users/getOneWithNonFollow", userController.getOneWithNonFollow)
+// router.post("/users/addFollower", userController.addFollower)
+// router.post("/users/removeFollower", userController.removeFollower)
+// router.post("/users/delete", userController.deleteUser)
+// router.post("/profile/edit", upload.single("image"),userController.editProfile)
 
-router.recipe("/recipes/create", upload.single("image"),recipeController.createRecipe)
+router.post("/recipes/create", upload.single("image"),recipeController.createRecipe)
 router.get("/recipes/:recipeId/getOne",recipeController.getOne)
+router.get("/recipes",recipeController.getAll)
 // router.get("/recipes/:recipeId/getOneWithLikes",recipeController.getOneWithLikes)
-// router.recipe("/recipes/:recipeId/like",recipeController.likeRecipe)
-// router.recipe("/recipes/:recipeId/dislike",recipeController.dislikeRecipe)
-// router.recipe("/recipes/:recipeId/comment",recipeController.recipeComment)
+// router.post("/recipes/:recipeId/like",recipeController.likeRecipe)
+// router.post("/recipes/:recipeId/dislike",recipeController.dislikeRecipe)
+// router.post("/recipes/:recipeId/comment",recipeController.recipeComment)
 // router.get("/recipes/:recipeId/getRecipeWithComments",recipeController.getRecipeWithComments)
-// router.recipe("/recipes/:recipeId/updateRecipe",recipeController.updateRecipe)
-// router.recipe("/recipes/:recipeId/deleteRecipe",recipeController.deleteRecipe)
+// router.post("/recipes/:recipeId/updateRecipe",recipeController.updateRecipe)
+// router.post("/recipes/:recipeId/deleteRecipe",recipeController.deleteRecipe)
 
 module.exports = router
