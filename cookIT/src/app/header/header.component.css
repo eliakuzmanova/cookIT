@@ -7,7 +7,8 @@ header{
     align-items: center;
 }
 
-header p{
+header .logo{
+    text-decoration: none;
     color: var(--black);
     font-weight: 700;
     font-size: 2.5em;
@@ -27,7 +28,7 @@ header li{
     display: inline;
    
 }
-header a{
+header .links{
     color: var(--beige);
     text-decoration: none;
     font-size: 1em;
@@ -37,6 +38,6 @@ header a{
 }
 
 
-header a:hover{
+header a.links:hover{
     color: var(--dark-yellow);
 }
