@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit{
   id!: string;
   user!: IUser | undefined;
   isPluralLength = false;
+  hasRecipes = false;
   constructor(private profileService: ProfileService, private route: ActivatedRoute){
 
   }
@@ -25,7 +26,7 @@ export class ProfileComponent implements OnInit{
         recipe.image = `http://localhost:5750/uploads/${recipe.image}`;
       })
       this.isPluralLength = this.user.recipes.length > 1 ? true : false;
-      console.log(this.user);
+      this.hasRecipes = this.user.recipes.length < 1 ? true : false;
       
      })
   }
