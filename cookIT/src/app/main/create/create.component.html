@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Create your own recipe</h1>
+    <hr>
+    <form #form="ngForm" (ngSubmit)="onSubmit">
+        <label class="file-label" for="image">Select your recipe photo</label>
+        <input class="input-file" name="image" id="image" type="file" ngModel>
+
+        <label for="title">Title</label>
+        <input name="title" id="title" type="text" ngModel>
+
+        <label for="prep-time">Prep Time</label>
+        <input class="time-input" name="prep-time" id="prep-time" type="number" ngModel>
+
+        <label for="cooking-time">Cooking Time</label>
+        <input class="time-input" name="cooking-time" id="cooking-time" type="number" ngModel>
+
+        <label for="ingredient">Ingredient</label>
+        <div>
+            <input name="ingredient" id="ingredient" type="text" ngModel>
+            <button type="button" class="add-btn btn-integrient">Add</button>
+        </div>
+        <label for="direction">Directions</label>
+        <div>
+            <input  name="direction" id="direction" type="text" ngModel>
+            <button type="button" class="add-btn btn-direction">Add</button>
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+</div>

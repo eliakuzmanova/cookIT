@@ -7,6 +7,7 @@ import { RegisterComponent } from './main/auth/register/register.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { DetailsComponent } from './main/details/details.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
+import { CreateComponent } from './main/create/create.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent
+  },
+  {
+    path:'create',
+    component: CreateComponent
   },
   {
     path: 'not-found',
