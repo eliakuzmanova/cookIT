@@ -17,7 +17,7 @@ export class CatalogComponent implements OnInit {
     this.catalogService.getAllRecipes().subscribe(values => {
       this.recipes = values
       this.recipes.map((recipe) => {
-        recipe.image = `http://localhost:5750/uploads/${recipe.image}`;
+        recipe.image = `http://localhost:5750/${recipe.image}`;
       })
      })
   }

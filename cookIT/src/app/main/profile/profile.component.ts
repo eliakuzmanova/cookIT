@@ -21,9 +21,9 @@ export class ProfileComponent implements OnInit{
     this.id = this.route.snapshot.params['id']
     this.profileService.getUserById(this.id).subscribe(value => {
        this.user = value;       
-       this.user.image = `http://localhost:5750/uploads/${this.user.image}`
+       this.user.image = `http://localhost:5750/${this.user.image}`
        this.user.recipes.map((recipe) => {
-        recipe.image = `http://localhost:5750/uploads/${recipe.image}`;
+        recipe.image = `http://localhost:5750/${recipe.image}`;
       })
       this.isPluralLength = this.user.recipes.length > 1 ? true : false;
       this.hasRecipes = this.user.recipes.length < 1 ? true : false;

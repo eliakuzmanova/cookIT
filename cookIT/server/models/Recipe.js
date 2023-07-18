@@ -33,20 +33,20 @@ const RecipeSchema = new mongoose.Schema({
     ingredients:[{
         type: String,
         require: true,
-        minLength: [2, "Too short ingredient"],
+        minLength: [0, "Too short ingredient"],
         maxLength: [500, "Too long ingredient"]
     }],
     directions:[{
         type: String,
         require: true,
-        minLength: [2, "Too short direction"],
+        minLength: [0, "Too short direction"],
         maxLength: [500, "Too long direction"]
     }],
-    author: {
-        type: mongoose.Types.ObjectId,
-        ref: "User",
-        require: true
-    },
+    // author: {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: "User",
+    //     require: true
+    // },
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);

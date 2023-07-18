@@ -1,30 +1,41 @@
 <div class="container">
     <h1>Create your own recipe</h1>
     <hr>
-    <form #form="ngForm" (ngSubmit)="onSubmit">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <label class="file-label" for="image">Select your recipe photo</label>
-        <input class="input-file" name="image" id="image" type="file" ngModel>
+        <input class="input-file" name="image" id="image" type="file" #file="ngModel" (change)="OnFileChange($event)" ngModel>
 
         <label for="title">Title</label>
         <input name="title" id="title" type="text" ngModel>
 
-        <label for="prep-time">Prep Time</label>
-        <input class="time-input" name="prep-time" id="prep-time" type="number" ngModel>
+        <label for="prepTime">Prep Time</label>
+        <input class="time-input" name="prepTime" id="prepTime" type="number" ngModel>
 
-        <label for="cooking-time">Cooking Time</label>
-        <input class="time-input" name="cooking-time" id="cooking-time" type="number" ngModel>
+        <label for="cookingTime">Cooking Time</label>
+        <input class="time-input" name="cookingTime" id="cookingTime" type="number" ngModel>
 
         <label for="ingredient">Ingredient</label>
         <div>
-            <input name="ingredient" id="ingredient" type="text" ngModel>
-            <button type="button" class="add-btn btn-integrient">Add</button>
+            <input name="ingredient" id="ingredient" type="text" ngModel #inputIngredients="ngModel">
+            <button type="button" class="add-btn btn-integrient" (click)="onAddIngredient($event)">Add</button> 
         </div>
+        <ol *ngIf="ingredients.length > 0">
+            <li *ngFor="let ingredient of ingredients; let i=index">
+                <p>{{ingredient}}</p>
+                <button (click)="onRemoveStep(i, 'ingredients')">x</button>
+            </li>
+        </ol>
         <label for="direction">Directions</label>
         <div>
-            <input  name="direction" id="direction" type="text" ngModel>
-            <button type="button" class="add-btn btn-direction">Add</button>
+            <input  name="direction" id="direction" type="text" ngModel #inputDirections="ngModel">
+            <button type="button" class="add-btn btn-direction" (click)="onAddDirection($event)">Add</button>
         </div>
-
-        <button type="submit">Create</button>
+        <ol *ngIf="directions.length > 0">
+            <li *ngFor="let direction of directions; let i=index">
+                <p>{{direction}}</p>
+                <button (click)="onRemoveStep(i, 'direction')">x</button>
+            </li>
+        </ol>
+        <button type="submit" [disabled]="form.invalid? true: false">Create</button>
     </form>
 </div>

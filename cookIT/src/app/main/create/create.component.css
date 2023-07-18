@@ -26,7 +26,7 @@ hr{
 form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 65%;
 
 }
 
@@ -53,6 +53,10 @@ input:not([type="file"]) {
     border: 1px solid var(--light-yellow);
 }
 
+input:not([name="ingredient"],[name="direction"]) {
+    width: 80%;
+}
+
 input[name="ingredient"],
 input[name="direction"] {
     width: 85%;
@@ -70,6 +74,7 @@ form>div:last-of-type {
     color: var(--light-yellow);
     padding: 0.3em 0.5em;
     border-radius: 0.2em;
+    cursor: pointer;
     transition: all 0.1s ease-in-out;
 }
 
@@ -88,6 +93,7 @@ form>div:last-of-type {
 }
 
 .file-label {
+    
     background-color: var(--light-yellow);
     padding: 0.5em 1em;
     align-self:start;
@@ -104,15 +110,42 @@ form>div:last-of-type {
 
 form>button{
     padding: 0.5em 1.5em;
+    font-weight: 600;
     align-self: center;
     border: none;
-    color: var(--light-yellow);
-    background-color: var(--black);
+    color: var(--black);
+    border: 1px solid var(--light-yellow);
+    border-radius: 0.5em;
     font-size: 1.2em;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 form>button:hover{
     color: var(--black);
-    background-color: var(--dark-yellow);
+    background-color: var(--light-yellow);
+
+}
+ol{
+    margin: 0 0 2em 0;
+    border: 1px solid var(--beige);
+    padding: 0.9em 2em;
+}
+
+ol li{
+    margin-bottom: 1em;
+}
+
+ol li p{
+    display: inline;
+}
+
+ol button{
+    display: inline;
+    padding: 0 0.7em;
+    color: var(--white);
+    background-color: var(--light-yellow);
+    border: none;
+    margin-left: 5%;
+  
 }

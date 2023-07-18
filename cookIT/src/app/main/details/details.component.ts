@@ -21,8 +21,8 @@ export class DetailsComponent implements OnInit {
     this.recipeId = this.route.snapshot.params['id']
     this.detailService.getDetails(this.recipeId).subscribe(value => {
     this.recipe = value;
-    this.recipe.image = `http://localhost:5750/uploads/${this.recipe.image}`
-    this.recipe.author.image = `http://localhost:5750/uploads/${this.recipe.author.image}`
+    this.recipe.image = `http://localhost:5750/${this.recipe.image}`
+    this.recipe.author.image = `http://localhost:5750/${this.recipe.author.image}`
     this.isPluralLength = this.recipe.author.recipes.length > 1 ? true : false;
     })
   }

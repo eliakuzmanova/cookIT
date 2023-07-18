@@ -4,12 +4,18 @@ const userService = require("../services/userService");
 exports.createRecipe = async (req, res) => {
 
     try {
-        const imagePath = req.file.path
-        const { userId, description } = req.body
-        const recipe = await recipeService.create(imagePath, userId, description);
-        const user = await userService.getOneById(userId);
-        user.recipes.push(recipe._id);
-        await userService.updateUserById(userId, user);
+        console.log("Hello from server");
+        const image = req.file.path;
+     
+        const title = req.body.title;
+        const prepTime = req.body.prepTime;
+        const cookingTime = req.body.cookingTime;
+        const totalTime = req.body.totalTime;
+        const ingredients = req.body.ingredients;
+        const directions = req.body.directions;
+        
+        const recipe = await recipeService.create(image, title, prepTime, cookingTime, totalTime, ingredients, directions);
+        console.log(recipe);
         res.status(200).end();
 
     } catch (err) {
