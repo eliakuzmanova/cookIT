@@ -20,7 +20,6 @@ exports.register = async (username, email, password) => {
    
         return user
     } catch(err){ 
-        console.log(err);
         throw Error(err)
     }
 
@@ -50,8 +49,7 @@ exports.login = async(email, password) => {
         return token
 
     } catch(err){ 
-       
-        console.log(err);
+      
         throw Error(err)
     }
   

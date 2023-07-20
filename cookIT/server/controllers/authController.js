@@ -1,8 +1,5 @@
-// const SECRET = require("../utils/secret");
-// const jwt = require("../utils/jsonwebtoken");
-const authService = require("../services/authService");
 
-// const decodedToken = await jwt.verify(token, SECRET);
+const authService = require("../services/authService");
 
 exports.login = async (req, res) => {
     try {
