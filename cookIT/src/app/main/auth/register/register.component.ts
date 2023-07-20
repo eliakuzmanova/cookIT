@@ -16,7 +16,6 @@ export class RegisterComponent {
 
  onSubmit(form: NgForm): void | any{
   try {
-    
   
   if (form.invalid) { return; }
   const formData = new FormData();
@@ -31,10 +30,11 @@ export class RegisterComponent {
   
   this.authService.onRegister(formData)
   .subscribe({
-    next: () =>  this.authService.onLogin(formData),
     error: (err) => console.log('HTTP Error', err),
       complete: () => console.info('complete') 
   })
+
+  this.authService.onLogin(formData)
 
   }catch (err) {
     console.log(err);
