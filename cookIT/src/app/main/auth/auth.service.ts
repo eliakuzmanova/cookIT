@@ -13,11 +13,11 @@ export class AuthService{
   url: string = "http://localhost:5750/"
   
   constructor(private http: HttpClient, private router: Router) {
-    this.isLoggedIn = !!this.user || !this.useLocalStorage()
+    this.isLoggedIn = !!this.user || !this.getUserInfo()
   }
 
   getLoggedInUser(): any {
-    if (this.user && this.useLocalStorage()) {
+    if (this.user && this.getUserInfo()) {
       return this.user;
     }
   }
@@ -35,18 +35,19 @@ export class AuthService{
 
         },
         error: (err) => console.log('HTTP Error', err),
-        complete: () => console.info('complete')
+        complete: () => this.router.navigate(["/"])
       });
+      
       
   }
 
   onRegister(username: string, email: string, password: string) {
      this.http.post(`${this.url}register`, {username, email, password}).subscribe({
       next: (v) => console.log('HTTP response', v),
-      error: (err) => console.log('HTTP Error', err),
-      complete: () => console.info('complete') 
-
+      error: (err) => {throw new Error(err)},
+      complete: () => this.onLogin(email, password)
     });
+    this.onLogin(email, password)
   }
 
   onLogout() {
@@ -55,7 +56,7 @@ export class AuthService{
     this.router.navigate(["/login"])
   }
 
-  useLocalStorage() {
+  getUserInfo() {
     const persistedStateSerialized = localStorage.getItem("auth");
 
     if (persistedStateSerialized) {

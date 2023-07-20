@@ -16,7 +16,7 @@ exports.register = async (username, email, password) => {
             throw Error("Existing user")
         }
 
-        const user = await User.create({username, email, password: hashPassword})
+        const user = await User.create({username, email, password: hashPassword, image: "uploads/user-pic.png"})
    
         return user
     } catch(err){ 

@@ -20,8 +20,8 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit(): void {
     
-    if(this.authService.useLocalStorage()) {
-      this.user = this.authService.useLocalStorage();
+    if(this.authService.getUserInfo()) {
+      this.user = this.authService.getUserInfo();
     } else {
       this.id =  this.route.snapshot.params['id']
       this.profileService.getUserById(this.id).subscribe(value => {

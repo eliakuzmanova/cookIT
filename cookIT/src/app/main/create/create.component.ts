@@ -1,6 +1,7 @@
 import { Component, ViewChild} from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { CreateService } from './create.service'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -18,7 +19,7 @@ export class CreateComponent {
   ingredients: String[];
   directions: String[];
 
-  constructor(private createService: CreateService) {
+  constructor(private createService: CreateService, private authService: AuthService) {
     	this.ingredients = [],
       this.directions = []
   }
@@ -59,6 +60,7 @@ export class CreateComponent {
     this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
     const formData = new FormData();
 
+    formData.append("userId", this.authService.getUserInfo()._id)
     formData.append("image", form.value.image);
     formData.append("title", form.value.title);
     formData.append("prepTime", String(form.value.prepTime));

@@ -8,14 +8,15 @@ import { IUser } from '../interfaces';
 })
 export class HeaderComponent implements OnInit{
   user : IUser | undefined;
+  isLoggedIn : boolean = false;
  constructor(private authService: AuthService) {
   
   
  }
 
  ngOnInit() {
-  this.user = this.authService.useLocalStorage();
-  
+  this.user = this.authService.getUserInfo();
+  this.isLoggedIn = !!this.user
  }
 
 }
