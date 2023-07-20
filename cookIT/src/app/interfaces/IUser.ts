@@ -4,6 +4,7 @@ export interface IUser {
     _id: string,
     username: string,
     email: string,
-    image: string,
-    recipes: [IRecipe]
+    image?: string,
+    recipes: [IRecipe],
+    token: string
 }
