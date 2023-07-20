@@ -7,33 +7,35 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
  
-  // isLoggedIn: boolean = false;
-  // user: any | undefined;
+  isLoggedIn: boolean = false;
+  user: any | undefined;
   url: string = "http://localhost:5750/"
   constructor(private http: HttpClient, private router: Router) {
-    // this.isLoggedIn = !!this.user || !this.useLocalStorage("auth")
+    this.isLoggedIn = !!this.user || !this.useLocalStorage("auth")
   }
 
-  // onIsLoggedIn(): boolean {
-  //   if (!this.user || !this.useLocalStorage("auth")) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  onIsLoggedIn(): boolean {
+    if (!this.user || !this.useLocalStorage("auth")) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
-  // onLogin(formData: FormData) {
-  //   this.http.post(`${this.url}login`, formData)
-  //     .subscribe({
-  //       next: (value) => {
-  //         this.user = value
-  //         this.setLocalStorageState("auth", this.user.token)
-  //       },
-  //       error: (err) => console.log('HTTP Error', err),
-  //       complete: () => console.info('complete')
-  //     });
+  onLogin(email: string, password: string) {
+    this.http.post(`${this.url}login`, {email,password})
+      .subscribe({
+        next: (value) => {
+          console.log(value);
+          
+          this.user = value
+          this.setLocalStorageState("auth", this.user.token)
+        },
+        error: (err) => console.log('HTTP Error', err),
+        complete: () => console.info('complete')
+      });
 
-  // }
+  }
 
   onRegister(username: string, email: string, password: string) {
      this.http.post(`${this.url}register`, {username, email, password}).subscribe({
@@ -44,27 +46,27 @@ export class AuthService {
     });
   }
 
-  // onLogout() {
-  //   this.setLocalStorageState("auth", {})
-  //   this.router.navigate(["/login"])
-  // }
+  onLogout() {
+    this.setLocalStorageState("auth", {})
+    this.router.navigate(["/login"])
+  }
 
-  // useLocalStorage(key: string) {
-  //   const persistedStateSerialized = localStorage.getItem(key);
+  useLocalStorage(key: string) {
+    const persistedStateSerialized = localStorage.getItem(key);
 
-  //   if (persistedStateSerialized) {
-  //     const persistedState = JSON.parse(persistedStateSerialized);
-  //     return persistedState;
-  //   }
+    if (persistedStateSerialized) {
+      const persistedState = JSON.parse(persistedStateSerialized);
+      return persistedState;
+    }
 
-  //   return undefined;
-  // }
+    return undefined;
+  }
 
-  // setLocalStorageState(key: string, value: string | {}) {
+  setLocalStorageState(key: string, value: string | {}) {
 
-  //   localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
 
-  // };
+  };
 
 
 }

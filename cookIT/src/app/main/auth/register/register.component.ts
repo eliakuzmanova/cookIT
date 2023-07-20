@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-register',
@@ -17,8 +17,6 @@ export class RegisterComponent {
  onSubmit(form: NgForm): void{
   
   if (form.invalid) { return; }
-  const formData = new FormData();
-  console.log(form.value);
 
   if(form.value.password != form.value["confirm-password"]) {
     throw new Error("Passwords do not match");

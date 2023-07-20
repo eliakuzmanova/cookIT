@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -17,12 +17,10 @@ export class LoginComponent {
   onSubmit(form: NgForm): void | any{
     
     if (form.invalid) { return; }
-    const formData = new FormData();
-  
-    formData.append("username", form.value.username);
-    formData.append("password", form.value.password);
     
-    // this.authService.onLogin(formData)
+     this.authService.onLogin(
+      form.value.email,
+      form.value.password)
 
    }
 

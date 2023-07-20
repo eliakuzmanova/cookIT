@@ -1,4 +1,4 @@
-
+const userService = require("../services/userService");
 const authService = require("../services/authService");
 
 exports.login = async (req, res) => {
@@ -7,8 +7,9 @@ exports.login = async (req, res) => {
         const { email, password } = req.body;
 
         const token = await authService.login(email, password)
-
-        res.status(200).json(token).end()
+        const user = await userService.getOne(email);
+        user.token = token
+        res.status(200).json(user).end()
     } catch (err) {
         res.status(400).send(err);
     }
