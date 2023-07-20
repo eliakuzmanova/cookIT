@@ -67,6 +67,7 @@ export class CreateComponent {
     formData.append("ingredients", JSON.stringify(this.ingredients));
     formData.append("directions", JSON.stringify(this.directions));
 
+
     this.createService.createRecipe(formData).subscribe({
       next: (v) => console.log('HTTP response', v),
       error: (err) => console.log('HTTP Error', err),

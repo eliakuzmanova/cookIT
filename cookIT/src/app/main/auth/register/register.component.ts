@@ -14,31 +14,21 @@ export class RegisterComponent {
 
  }
 
- onSubmit(form: NgForm): void | any{
-  try {
+ onSubmit(form: NgForm): void{
   
   if (form.invalid) { return; }
   const formData = new FormData();
+  console.log(form.value);
 
   if(form.value.password != form.value["confirm-password"]) {
-    throw new Error("Passwords do not match")
+    throw new Error("Passwords do not match");
   }
 
-  formData.append("username", form.value.username);
-  formData.append("email", form.value.email);
-  formData.append("password", form.value.password);
   
-  this.authService.onRegister(formData)
-  .subscribe({
-    error: (err) => console.log('HTTP Error', err),
-      complete: () => console.info('complete') 
-  })
+  this.authService.onRegister(
+    form.value.username, 
+    form.value.email, 
+    form.value.password)
 
-  this.authService.onLogin(formData)
-
-  }catch (err) {
-    console.log(err);
-    return err;
-  }
  }
 }

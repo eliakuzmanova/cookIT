@@ -1,50 +1,70 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { IUser } from 'src/app/interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: any | undefined;
+ 
+  // isLoggedIn: boolean = false;
+  // user: any | undefined;
   url: string = "http://localhost:5750/"
-  constructor(private router: Router, private http:HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {
+    // this.isLoggedIn = !!this.user || !this.useLocalStorage("auth")
+  }
 
-  onLogin(formData: FormData) {   
-     this.http.post(`${this.url}login`, formData)
-     .subscribe({
-      next: (value) => this.user = value,
+  // onIsLoggedIn(): boolean {
+  //   if (!this.user || !this.useLocalStorage("auth")) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
+
+  // onLogin(formData: FormData) {
+  //   this.http.post(`${this.url}login`, formData)
+  //     .subscribe({
+  //       next: (value) => {
+  //         this.user = value
+  //         this.setLocalStorageState("auth", this.user.token)
+  //       },
+  //       error: (err) => console.log('HTTP Error', err),
+  //       complete: () => console.info('complete')
+  //     });
+
+  // }
+
+  onRegister(username: string, email: string, password: string) {
+     this.http.post(`${this.url}register`, {username, email, password}).subscribe({
+      next: (v) => console.log('HTTP response', v),
       error: (err) => console.log('HTTP Error', err),
       complete: () => console.info('complete') 
-     });
 
-  }
-  onRegister(formData: FormData) {
-   return this.http.post(`${this.url}register`, formData)
+    });
   }
 
-  onLogout() {
-    this.setLocalStorageState("auth", {})
-    this.router.navigate(["/login"])
-  }
+  // onLogout() {
+  //   this.setLocalStorageState("auth", {})
+  //   this.router.navigate(["/login"])
+  // }
 
-  useLocalStorage(key: string, initialValue: string | {}) {
-    const persistedStateSerialized = localStorage.getItem(key);
+  // useLocalStorage(key: string) {
+  //   const persistedStateSerialized = localStorage.getItem(key);
 
-    if (persistedStateSerialized) {
-      const persistedState = JSON.parse(persistedStateSerialized);
-      return persistedState;
-    }
+  //   if (persistedStateSerialized) {
+  //     const persistedState = JSON.parse(persistedStateSerialized);
+  //     return persistedState;
+  //   }
 
-    return initialValue;
-  }
+  //   return undefined;
+  // }
 
-  setLocalStorageState(key: string, value: string | {}) {
+  // setLocalStorageState(key: string, value: string | {}) {
 
-    localStorage.setItem(key, JSON.stringify(value));
+  //   localStorage.setItem(key, JSON.stringify(value));
 
-  };
+  // };
 
 
 }
