@@ -3,16 +3,21 @@
         <h1>Register</h1>
         <p>Register to can save and post your favorite receipts!</p>
         <hr>
-        <form action="">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
             <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" ngModel>
+
             <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" ngModel email>
+
             <label for="password">Password</label>
-            <input type="text" name="password" id="password">
+            <input type="text" name="password" id="password" ngModel>
+
             <label for="confirm-password">Confirm Password</label>
-            <input type="text" name="confirm-password" id="confirm-password">
-            <button type="button">Register</button>
+            <input type="text" name="confirm-password" id="confirm-password" ngModel>
+            
+            <button type="submit" [disabled]="form.invalid? true: false">Register</button>
         </form>
         <div>
         <p>You have an account?</p>

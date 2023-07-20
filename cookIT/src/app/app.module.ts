@@ -10,7 +10,6 @@ import { CatalogComponent } from './main/catalog/catalog.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
-import { LogoutComponent } from './main/auth/logout/logout.component';
 import { DetailsComponent } from './main/details/details.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { DetailsService } from './main/details/details.service';
@@ -26,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent,
     DetailsComponent,
     NotFoundComponent,
     CreateComponent,

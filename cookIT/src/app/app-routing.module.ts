@@ -4,7 +4,6 @@ import { CatalogComponent } from './main/catalog/catalog.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
-import { LogoutComponent } from './main/auth/logout/logout.component';
 import { DetailsComponent } from './main/details/details.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { CreateComponent } from './main/create/create.component';
@@ -22,10 +21,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent
   },
   {
     path: 'profile/:id',

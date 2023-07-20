@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { CreateService } from './create.service'
 
@@ -9,7 +9,7 @@ import { CreateService } from './create.service'
 })
 export class CreateComponent {
 
-  @ViewChild("form") form!: NgForm
+  @ViewChild("form") form!: NgForm;
   @ViewChild("inputIngredients") inputIngredients!: NgModel
   @ViewChild("inputDirections") inputDirections!: NgModel
 
@@ -66,8 +66,6 @@ export class CreateComponent {
     formData.append("totalTime", String(this.totalTime));
     formData.append("ingredients", JSON.stringify(this.ingredients));
     formData.append("directions", JSON.stringify(this.directions));
-
-  console.log(formData);
 
     this.createService.createRecipe(formData).subscribe({
       next: (v) => console.log('HTTP response', v),
