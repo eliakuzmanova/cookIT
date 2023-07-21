@@ -7,11 +7,11 @@ import {IRecipe} from "../../interfaces/index"
   providedIn: 'root'
 })
 export class CatalogService {
-  url: string = "http://localhost:5750/recipes"
+  url: string = "http://localhost:5750/recipes/getAll"
 
   constructor(private http:HttpClient) { }
 
   getAllRecipes() {
-    return this.http.get<[IRecipe]>(this.url)
+    return this.http.get<IRecipe[]>(this.url)
   }
 }

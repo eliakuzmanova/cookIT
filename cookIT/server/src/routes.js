@@ -23,7 +23,7 @@ router.get("/users/:id", userController.getOneById)
 
 router.post("/recipes/create", upload.single("image"),recipeController.createRecipe)
 router.get("/recipes/:recipeId/getOne",recipeController.getOne)
-router.get("/recipes",recipeController.getAll)
+router.get("/recipes/getAll",recipeController.getAll)
 // router.get("/recipes/:recipeId/getOneWithLikes",recipeController.getOneWithLikes)
 // router.post("/recipes/:recipeId/like",recipeController.likeRecipe)
 // router.post("/recipes/:recipeId/dislike",recipeController.dislikeRecipe)

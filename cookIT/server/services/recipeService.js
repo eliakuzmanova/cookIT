@@ -4,7 +4,7 @@ exports.create = (userId, image, title, prepTime, cookingTime, totalTime, ingred
 
 exports.getOne = (RecipeId) => Recipe.findById(RecipeId).populate("author").lean();
 
-exports.getAll = () => Recipe.find({}).lean();
+exports.getAll = () => Recipe.find({}).populate("author").lean();
 
 // exports.getOneWithLikes =  RecipeId) => Recipe.findById RecipeId).populate("likes").lean();
 
