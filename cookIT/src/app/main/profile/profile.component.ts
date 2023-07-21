@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit{
   user!: IUser | undefined;
   isPluralLength = false;
   hasRecipes = false;
+  loggedUserId!: IUser | undefined;
   constructor(private profileService: ProfileService, private route: ActivatedRoute, private authService: AuthService){
 
   }
@@ -21,7 +22,10 @@ export class ProfileComponent implements OnInit{
   ngOnInit(): void {
     
     if(this.authService.getUserInfo()) {
-      this.user = this.authService.getUserInfo();
+      this.loggedUserId = this.authService.getUserInfo()._id
+      if(this.route.snapshot.params['id'] == this.loggedUserId){
+        this.user = this.loggedUserId
+      }
     } else {
       this.id =  this.route.snapshot.params['id']
       this.profileService.getUserById(this.id).subscribe(value => {

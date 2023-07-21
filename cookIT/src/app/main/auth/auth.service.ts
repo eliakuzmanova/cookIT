@@ -69,7 +69,7 @@ export class AuthService{
 
     if (persistedStateSerialized) {
       const persistedState = JSON.parse(persistedStateSerialized);
-  
+      this.authenticateComponent.isAuthenticated$$.next(persistedState)
       return persistedState;
     }
 
