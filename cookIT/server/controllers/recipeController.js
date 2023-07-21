@@ -4,7 +4,6 @@ const userService = require("../services/userService");
 exports.createRecipe = async (req, res) => {
 
     try {
-        console.log("Hello from server");
         const image = req.file.path;
      
         const userId = req.body.userId
@@ -15,9 +14,7 @@ exports.createRecipe = async (req, res) => {
         const ingredients = req.body.ingredients;
         const directions = req.body.directions;
         
-        
         const recipe = await recipeService.create(userId, image, title, prepTime, cookingTime, totalTime, ingredients, directions);
-        console.log(recipe);
         res.status(200).end();
 
     } catch (err) {
@@ -39,7 +36,6 @@ exports.getOne = async (req, res) => {
 exports.getAll = async (req, res) => {
     try {
         const recipes = await recipeService.getAll()
-        console.log(recipes);
         res.status(200).send(recipes);
     } catch (err) {
         res.status(400).send(err);

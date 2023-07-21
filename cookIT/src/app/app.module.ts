@@ -15,6 +15,8 @@ import { NotFoundComponent } from './main/not-found/not-found.component';
 import { DetailsService } from './main/details/details.service';
 import { CreateComponent } from './main/create/create.component';
 import { FormsModule } from '@angular/forms';
+import { LogoutComponent } from './main/auth/logout/logout.component';
+import { AuthenticateComponent } from './main/auth/authenticate/authenticate.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FormsModule } from '@angular/forms';
     DetailsComponent,
     NotFoundComponent,
     CreateComponent,
+    LogoutComponent,
+    AuthenticateComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [DetailsService],
+  providers: [DetailsService,AuthenticateComponent,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

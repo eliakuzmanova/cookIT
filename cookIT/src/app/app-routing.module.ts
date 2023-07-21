@@ -7,6 +7,7 @@ import { RegisterComponent } from './main/auth/register/register.component';
 import { DetailsComponent } from './main/details/details.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { CreateComponent } from './main/create/create.component';
+import { LogoutComponent } from './main/auth/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path: 'not-found',
     component: NotFoundComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
+    
   },
   {
     path: '**',
