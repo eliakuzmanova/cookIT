@@ -6,6 +6,8 @@ exports.getOneById = (userId) => User.findById(userId).populate("recipes").lean(
 
 exports.getAll = () => User.find({}).lean();
 
+ exports.update = (id, data) => User.findByIdAndUpdate(id, {...data});
+
 // exports.getOneWithNonFollow = (id) => User.findById(id).populate("follow").lean();
 
 // exports.getOneByUsernameWithPosts = (id) => User.findById(id).populate("posts").lean();
@@ -22,10 +24,9 @@ exports.getAll = () => User.find({}).lean();
 // exports.getOneByUsernameWithRetentions = (username) => User.findOne({username}).populate("posts").lean();
 
 // exports.getById = (id) => User.findById(id).lean();
-
 // exports.create = (data, userId) => User.create({...data, author: userId}); // <---- check owner
 
-// exports.update = (data, id) => User.findByIdAndUpdate(id, {...data});
+
 
 
 // exports.getFirstThree = () => User.find({}).limit(3).lean();

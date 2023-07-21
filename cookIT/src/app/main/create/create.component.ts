@@ -2,7 +2,7 @@ import { Component, ViewChild} from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { CreateService } from './create.service'
 import { AuthService } from '../auth/auth.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -19,7 +19,7 @@ export class CreateComponent {
   ingredients: String[];
   directions: String[];
 
-  constructor(private createService: CreateService, private authService: AuthService) {
+  constructor(private createService: CreateService, private authService: AuthService, private router: Router) {
     	this.ingredients = [],
       this.directions = []
   }
@@ -58,24 +58,26 @@ export class CreateComponent {
     form.value.image = this.image
 
     this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
+    form.value.totalTime = this.totalTime
+    
     const formData = new FormData();
 
     formData.append("userId", this.authService.getUserInfo()._id)
     formData.append("image", form.value.image);
     formData.append("title", form.value.title);
-    formData.append("prepTime", String(form.value.prepTime));
-    formData.append("cookingTime", String(form.value.cookingTime));
-    formData.append("totalTime", String(this.totalTime));
+    formData.append("prepTime", form.value.prepTime);
+    formData.append("cookingTime", form.value.cookingTime);
+    formData.append("totalTime",  form.value.totalTime);
     formData.append("ingredients", JSON.stringify(this.ingredients));
     formData.append("directions", JSON.stringify(this.directions));
-
-
+ 
     this.createService.createRecipe(formData).subscribe({
       next: (v) => console.log('HTTP response', v),
       error: (err) => console.log('HTTP Error', err),
-      complete: () => console.info('complete') 
-    }
-    );
+      complete: () => {
+        this.router.navigate(["/"])
+      }
+    });
 
   }
 }

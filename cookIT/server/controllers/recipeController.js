@@ -13,8 +13,15 @@ exports.createRecipe = async (req, res) => {
         const totalTime = req.body.totalTime;
         const ingredients = req.body.ingredients;
         const directions = req.body.directions;
-        
+
         const recipe = await recipeService.create(userId, image, title, prepTime, cookingTime, totalTime, ingredients, directions);
+
+        const user = await userService.getOneById(userId)
+
+        user.recipes.push(recipe._id);
+
+       const updatedUser = await userService.update(userId, user)
+
         res.status(200).end();
 
     } catch (err) {
@@ -26,6 +33,7 @@ exports.createRecipe = async (req, res) => {
 exports.getOne = async (req, res) => {
     try {
         const { recipeId } = req.params
+        
         const recipe = await recipeService.getOne(recipeId)
         res.status(200).send(recipe);
     } catch (err) {
