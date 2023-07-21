@@ -11,8 +11,8 @@ exports.createRecipe = async (req, res) => {
         const prepTime = req.body.prepTime;
         const cookingTime = req.body.cookingTime;
         const totalTime = req.body.totalTime;
-        const ingredients = req.body.ingredients;
-        const directions = req.body.directions;
+        const ingredients = JSON.parse(req.body.ingredients);
+        const directions = JSON.parse(req.body.directions);
 
         const recipe = await recipeService.create(userId, image, title, prepTime, cookingTime, totalTime, ingredients, directions);
 
