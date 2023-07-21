@@ -15,8 +15,9 @@ export class ProfileComponent implements OnInit {
   isPluralLength = false;
   hasRecipes = false;
   loggedUser!: IUser | undefined;
-  constructor(private profileService: ProfileService, private route: ActivatedRoute, private authService: AuthService) {
 
+  constructor(private profileService: ProfileService, private route: ActivatedRoute, private authService: AuthService) {
+    this.route.params.subscribe(params => this.ngOnInit())
   }
 
   ngOnInit(): void {
