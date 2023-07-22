@@ -17,6 +17,7 @@ import { CreateComponent } from './main/create/create.component';
 import { FormsModule } from '@angular/forms';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { AuthenticateComponent } from './main/auth/authenticate/authenticate.component';
+import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthenticateComponent } from './main/auth/authenticate/authenticate.com
     CreateComponent,
     LogoutComponent,
     AuthenticateComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

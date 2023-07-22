@@ -14,6 +14,7 @@
                     <p>{{isPluralLength? "recipes" : "recipe"}}</p>
                 </div>
             </div>
+            <a *ngIf="id == loggedUser?._id" routerLink="/edit/profile" class="edit-btn">Edit</a>
         </div>
     </div>
 

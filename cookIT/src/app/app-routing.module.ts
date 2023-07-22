@@ -8,6 +8,7 @@ import { DetailsComponent } from './main/details/details.component';
 import { NotFoundComponent } from './main/not-found/not-found.component';
 import { CreateComponent } from './main/create/create.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
+import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent,
+  },
+  {
+    path: 'edit/profile',
+    component: EditProfileComponent,
   },
   {
     path: 'details/:id',

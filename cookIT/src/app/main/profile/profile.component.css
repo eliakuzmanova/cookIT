@@ -82,6 +82,23 @@ svg{
     margin: 0 auto 0.4em auto;
 } 
 
+.edit-btn{
+    background-color: var(--black);
+    color: var(--light-yellow);
+    border: none;
+    font-weight: 500;
+    padding: 0.5em 0.5em;
+    letter-spacing: 0.2em;
+    font-size: 0.9em;
+    margin-top: 0.3em;
+    text-align: center;
+}
+
+.edit-btn:hover{
+    cursor: pointer;
+
+}
+
 
 
 /* ----- Recipes ------ */
