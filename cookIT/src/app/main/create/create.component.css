@@ -94,7 +94,7 @@ form>div:last-of-type {
 }
 
 .file-label {
-    
+    color: var(--black);
     background-color: var(--light-yellow);
     padding: 0.5em 1em;
     align-self:start;

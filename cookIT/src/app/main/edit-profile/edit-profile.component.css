@@ -1,0 +1,113 @@
+.container {
+    width: 60%;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin: 0.3em;
+    color: var(--light-yellow);
+    font-size: 3em;
+    letter-spacing: 0.2em;
+}
+
+hr {
+    width: 40%;
+    border: none;
+    height: 1px;
+    background-color: var(--beige);
+    margin-bottom: 2em;
+}
+
+img {
+    width: 13em;
+    height: 13em;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 0.5em;
+    border: 3px solid var(--light-yellow);
+    margin-bottom: 0.2em;
+    background-color: var(--black);
+    margin-bottom: 0.9em;
+    margin-bottom: 3em;
+}
+
+form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-label {
+    text-align: center;
+color: var(--black);
+    background-color: var(--light-yellow);
+    padding: 0.5em 1em;
+    width: 100%;
+    align-self: start;
+    margin-bottom: 1em;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 0.4em;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out;
+}
+.image-selected-container{
+    margin-top: 1.8em;
+}
+
+.image-selected-container p {
+    font-weight: 400;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 0.5em 0.3em;
+    border: 1px solid var(--light-yellow);
+    border-radius: 0.2em;
+    align-self: center;
+}
+.username-container{
+    margin-top: 2em;  
+    display: flex;
+    flex-direction: column;
+}
+
+label[for="username"] {
+    color: var(--black);
+    font-weight: 500;
+    margin-bottom: 0.3em;
+    font-size: 1.05em;
+    letter-spacing: 0.05em;
+
+}
+
+input[name="username"] {
+    margin-bottom: 2.5em;
+    border: 1px solid var(--light-yellow);
+    border-radius: 0.3em;
+    padding: 0.4em 0.3em;
+}
+
+button {
+    padding: 0.3em 1.1em;
+    width: 19%;
+    background-color: var(--black);
+    border: none;
+    border-radius: 0.3em;
+    color: var(--light-yellow);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}

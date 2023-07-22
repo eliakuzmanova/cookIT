@@ -1,1 +1,21 @@
-<p>edit-profile works!</p>
+<div class="container">
+    <h1>Edit profile</h1>
+    <hr>
+    <img [attr.src]="user.image" alt={{user.username}}>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="file-container">
+        <label class="file-label" for="image">{{selectedImage ? "Selected photo" : "Select your profile photo"}}</label>
+        <input class="input-file" name="image" id="image" type="file" #file="ngModel" (change)="OnFileChange($event)" ngModel>
+        
+    </div>
+    <div *ngIf="selectedImage" class="image-selected-container" >
+        <p *ngIf="selectedImage">{{selectedImage}}</p>
+    </div>
+    <div class="username-container">
+        <label for="username">Username</label>
+        <input name="username" id="username" type="text" ngModel [(ngModel)]="usernameValue" >
+    </div>
+         
+        <button type="submit" [disabled]="form.invalid? true: false">Edit</button>
+    </form>
+</div>
