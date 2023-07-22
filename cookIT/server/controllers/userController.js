@@ -27,6 +27,32 @@ exports.getOneById = async (req, res) => {
 
 }
 
+exports.editProfile = async (req, res) => {
+
+    try {
+       console.log("hello");
+        let imagePath;
+
+        imagePath = req.file?.path
+        console.log(req.body);
+        const { userId, username, email } = req.body
+        
+     
+        if(!imagePath){
+            const {image} = req.body
+            imagePath = image
+        }
+
+        await userService.updateUserById(userId, { username, email, image: imagePath });
+
+        res.status(200).end();
+
+    } catch (err) {
+        res.status(403).send(err);
+    }
+
+}
+
 // exports.getOneByUsernameWithRel = async (req, res) => {
 
 //     try {
@@ -86,30 +112,6 @@ exports.getOneById = async (req, res) => {
 
 // }
 
-// exports.editProfile = async (req, res) => {
-
-//     try {
-       
-//         let imagePath;
-
-//         imagePath = req.file?.path
-       
-//         const { userId, description, username, email } = req.body
-     
-//         if(!imagePath){
-//             const {image} = req.body
-//             imagePath = image
-//         }
-
-//         await userService.updateUserById(userId, { description, username, email, image: imagePath });
-
-//         res.status(200).end();
-
-//     } catch (err) {
-//         res.status(403).send(err);
-//     }
-
-// }
 
 
 // exports.addFollower = async (req, res) => {

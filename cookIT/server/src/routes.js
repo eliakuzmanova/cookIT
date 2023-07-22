@@ -14,12 +14,13 @@ router.post("/login", authController.login)
 
 // router.post("/users/getOne", userController.getOne)
 router.get("/users/:id", userController.getOneById)
+router.post("/profile/edit", upload.single("image"),userController.editProfile)
 // router.post("/users/getOneWithRelations", userController.getOneByUsernameWithRel)
 // router.post("/users/getOneWithNonFollow", userController.getOneWithNonFollow)
 // router.post("/users/addFollower", userController.addFollower)
 // router.post("/users/removeFollower", userController.removeFollower)
 // router.post("/users/delete", userController.deleteUser)
-// router.post("/profile/edit", upload.single("image"),userController.editProfile)
+
 
 router.post("/recipes/create", upload.single("image"),recipeController.createRecipe)
 router.get("/recipes/:recipeId/getOne",recipeController.getOne)

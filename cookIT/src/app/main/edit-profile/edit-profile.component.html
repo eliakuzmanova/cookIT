@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Edit profile</h1>
     <hr>
-    <img [attr.src]="user.image" alt={{user.username}}>
+    <img [attr.src]="userImage" alt={{user.username}}>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="file-container">
         <label class="file-label" for="image">{{selectedImage ? "Selected photo" : "Select your profile photo"}}</label>
@@ -11,9 +11,13 @@
     <div *ngIf="selectedImage" class="image-selected-container" >
         <p *ngIf="selectedImage">{{selectedImage}}</p>
     </div>
-    <div class="username-container">
+    <div class="normal-input-container">
         <label for="username">Username</label>
         <input name="username" id="username" type="text" ngModel [(ngModel)]="usernameValue" >
+    </div>
+    <div class="normal-input-container">
+        <label for="email">Email</label>
+        <input name="email" id="email" type="text" ngModel [(ngModel)]="emailValue" >
     </div>
          
         <button type="submit" [disabled]="form.invalid? true: false">Edit</button>

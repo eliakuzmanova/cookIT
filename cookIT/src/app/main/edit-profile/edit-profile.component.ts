@@ -3,6 +3,7 @@ import { NgForm} from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces';
+import { EditService } from './edit.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,16 +15,19 @@ export class EditProfileComponent implements OnInit {
   @ViewChild("form") form!: NgForm;
 
   image: File | undefined;
+  userImage! : string;
   user!: IUser;
   usernameValue!: string;
+  emailValue!: string;
   selectedImage: string | undefined;
 
-constructor(private authService: AuthService ,private router: Router) {}
+constructor(private authService: AuthService ,private router: Router, private editService: EditService) {}
 
   ngOnInit(): void {
     this.user = this.authService.getUserInfo()
-    this.user.image = `http://localhost:5750/${this.user.image}`
+    this.userImage = `http://localhost:5750/${this.user.image}`
     this.usernameValue = this.user.username
+    this.emailValue = this.user.email
   }
 
 
@@ -38,6 +42,24 @@ constructor(private authService: AuthService ,private router: Router) {}
   }
 
   onSubmit(form: NgForm): void {
-    
+    if (form.invalid) { return; }
+    if(this.image){
+    form.value.image = this.image
+    }
+    const formData = new FormData();
+
+    formData.append("userId", this.user._id)
+    formData.append("image", form.value.image? form.value.image: this.userImage);
+    formData.append("username", form.value.username);
+    formData.append("email", form.value.email);
+
+ 
+    this.editService.editProfile(formData).subscribe({
+      next: (v) => console.log('HTTP response', v),
+      error: (err) => console.log('HTTP Error', err),
+      complete: () => {
+        this.router.navigate([`profile/${this.user._id}`])
+      }
+    });
   }
 }

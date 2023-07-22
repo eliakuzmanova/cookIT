@@ -8,6 +8,8 @@ exports.getAll = () => User.find({}).lean();
 
  exports.update = (id, data) => User.findByIdAndUpdate(id, {...data});
 
+  exports.updateUserById = (userId, data) => User.findByIdAndUpdate(userId, data)
+
 // exports.getOneWithNonFollow = (id) => User.findById(id).populate("follow").lean();
 
 // exports.getOneByUsernameWithPosts = (id) => User.findById(id).populate("posts").lean();
@@ -15,8 +17,6 @@ exports.getAll = () => User.find({}).lean();
 // exports.getOneByUsernameWithFollows = (id) => User.findById(id).populate("follow").lean();
 
 // exports.getOneByUsernameWithRetentions = (username) => User.findOne({username}).populate("posts").populate("followers").populate("follow").lean();
-
-// exports.updateUserById = (userId, data) => User.findByIdAndUpdate(userId, data)
 
 // exports.delete = (id) => User.findByIdAndRemove(id)
 

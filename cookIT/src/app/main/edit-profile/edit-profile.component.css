@@ -78,13 +78,14 @@ color: var(--black);
     border-radius: 0.2em;
     align-self: center;
 }
-.username-container{
+.normal-input-container{
     margin-top: 2em;  
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 
-label[for="username"] {
+label[for="username"], label[for="email"] {
     color: var(--black);
     font-weight: 500;
     margin-bottom: 0.3em;
@@ -93,14 +94,18 @@ label[for="username"] {
 
 }
 
-input[name="username"] {
-    margin-bottom: 2.5em;
+input[name="username"]{
+    width: 60%;
+}
+
+input[name="username"],input[name="email"] {
     border: 1px solid var(--light-yellow);
     border-radius: 0.3em;
     padding: 0.4em 0.3em;
 }
 
 button {
+    margin-top: 2.5em;;
     padding: 0.3em 1.1em;
     width: 19%;
     background-color: var(--black);
