@@ -55,7 +55,7 @@ constructor(private authService: AuthService ,private router: Router, private ed
 
  
     this.editService.editProfile(formData).subscribe({
-      next: (v) => console.log('HTTP response', v),
+      next: (v) =>this.authService.setLocalStorageState("auth", v),
       error: (err) => console.log('HTTP Error', err),
       complete: () => {
         this.router.navigate([`profile/${this.user._id}`])
