@@ -147,3 +147,20 @@ svg{
     justify-content: center;
     margin: 0 auto 0.4em auto;
 }
+
+.edit-btn{
+    text-decoration: none;
+    background-color: var(--light-yellow);
+    color: var(--black);
+    border: none;
+    border-radius: 0.2em;
+    font-weight: 500;
+    padding: 0.9em 0.5em;
+    letter-spacing: 0.2em;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    width: 40%;
+    align-self: center;
+    margin-bottom:2em;
+}
