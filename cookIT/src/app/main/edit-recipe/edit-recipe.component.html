@@ -3,20 +3,20 @@
     <h1>Edit your recipe</h1>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="image-container">
-            <img [attr.src]="recipe.image" alt={{recipe.title}}/>
+            <img [attr.src]="defaultImage" alt={{titleValue}}/>
         </div>
 
         <label class="file-label" for="image">Select your recipe photo</label>
         <input class="input-file" name="image" id="image" type="file" #file="ngModel" (change)="OnFileChange($event)" ngModel>
 
         <label for="title">Title</label>
-        <input name="title" id="title" type="text" ngModel>
+        <input name="title" id="title" type="text" ngModel [(ngModel)]="titleValue">
 
         <label for="prepTime">Prep Time</label>
-        <input class="time-input" name="prepTime" id="prepTime" type="number" ngModel>
+        <input class="time-input" name="prepTime" id="prepTime" type="number" ngModel [(ngModel)]="prepTimeValue">
 
         <label for="cookingTime">Cooking Time</label>
-        <input class="time-input" name="cookingTime" id="cookingTime" type="number" ngModel>
+        <input class="time-input" name="cookingTime" id="cookingTime" type="number" ngModel [(ngModel)]="cookingTimeValue">
 
         <label for="ingredient">Ingredient</label>
         <div>

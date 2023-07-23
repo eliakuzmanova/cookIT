@@ -18,29 +18,36 @@ export class EditRecipeComponent {
   @ViewChild("inputDirections") inputDirections!: NgModel
 
   image: File | undefined
+  defaultImage!: string;
   totalTime!: number
-  ingredients: String[];
-  directions: String[];
+  ingredients: String[] = [];
+  directions: String[] = [];
   recipeId: string;
   recipe!: IRecipe;
   detailService: any;
   isPluralLength: boolean = false;
   loggedUser: any;
-  isAuthor: boolean = false;
+
+  titleValue!: string;
+  prepTimeValue!: number;
+  cookingTimeValue!: number;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private editRecipeService: EditRecipeService, private detailsService: DetailsService) {
-    this.ingredients = [],
-    this.directions = []
+ 
     this.recipeId = this.route.snapshot.params['id']
-    
+
     this.detailsService.getDetails(this.recipeId).subscribe(value => {
+
       this.recipe = value;
-      this.recipe.image = `http://localhost:5750/${this.recipe.image}`
-      this.recipe.author.image = `http://localhost:5750/${this.recipe.author.image}`
+      this.defaultImage = `http://localhost:5750/${this.recipe.image}`
+    
       this.isPluralLength = this.recipe.author.recipes.length > 1 ? true : false;
       this.loggedUser = this.authService.getUserInfo();
-      this.isAuthor = this.loggedUser?._id == this.recipe?.author._id
-
+      this.ingredients = this.recipe.ingredients;
+      this.directions = this.recipe.directions;
+      this.titleValue = this.recipe.title;
+      this.prepTimeValue = this.recipe.prepTime;
+      this.cookingTimeValue = this.recipe.cookingTime;
     })
   }
 
@@ -75,15 +82,17 @@ export class EditRecipeComponent {
 
   onSubmit(form: NgForm): void {
     if (form.invalid) { return; }
-    form.value.image = this.image
+    if(this.image){
+      form.value.image = this.image
+      }
 
     this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
     form.value.totalTime = this.totalTime
 
     const formData = new FormData();
 
-    formData.append("userId", this.authService.getUserInfo()._id)
-    formData.append("image", form.value.image);
+    formData.append("recipeId", this.recipeId)
+    formData.append("image", form.value.image? form.value.image: this.recipe.image);
     formData.append("title", form.value.title);
     formData.append("prepTime", form.value.prepTime);
     formData.append("cookingTime", form.value.cookingTime);
@@ -95,7 +104,7 @@ export class EditRecipeComponent {
       next: (v) => console.log('HTTP response', v),
       error: (err) => console.log('HTTP Error', err),
       complete: () => {
-        this.router.navigate(["/"])
+        this.router.navigate([`/details/${this.recipeId}`])
       }
     });
 

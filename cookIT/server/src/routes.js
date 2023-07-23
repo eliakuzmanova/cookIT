@@ -25,12 +25,13 @@ router.post("/profile/edit", upload.single("image"),userController.editProfile)
 router.post("/recipes/create", upload.single("image"),recipeController.createRecipe)
 router.get("/recipes/:recipeId/getOne",recipeController.getOne)
 router.get("/recipes/getAll",recipeController.getAll)
+router.post("/recipe/edit",upload.single("image"),recipeController.editRecipe)
 // router.get("/recipes/:recipeId/getOneWithLikes",recipeController.getOneWithLikes)
 // router.post("/recipes/:recipeId/like",recipeController.likeRecipe)
 // router.post("/recipes/:recipeId/dislike",recipeController.dislikeRecipe)
 // router.post("/recipes/:recipeId/comment",recipeController.recipeComment)
 // router.get("/recipes/:recipeId/getRecipeWithComments",recipeController.getRecipeWithComments)
-// router.post("/recipes/:recipeId/updateRecipe",recipeController.updateRecipe)
+
 // router.post("/recipes/:recipeId/deleteRecipe",recipeController.deleteRecipe)
 
 module.exports = router

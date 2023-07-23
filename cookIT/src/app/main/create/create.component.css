@@ -148,5 +148,5 @@ ol button{
     background-color: var(--light-yellow);
     border: none;
     margin-left: 5%;
-  
+    cursor: pointer;
 }

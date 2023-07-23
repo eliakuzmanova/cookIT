@@ -20,7 +20,7 @@ exports.createRecipe = async (req, res) => {
 
         user.recipes.push(recipe._id);
 
-       const updatedUser = await userService.update(userId, user)
+        await userService.update(userId, user)
 
         res.status(200).end();
 
@@ -48,6 +48,36 @@ exports.getAll = async (req, res) => {
     } catch (err) {
         res.status(400).send(err);
     }
+}
+
+exports.editRecipe= async (req, res) => {
+
+    try {
+
+        let imagePath;
+
+        imagePath = req.file?.path
+
+        const recipeId = req.body.recipeId;
+        const title = req.body.title;
+        const prepTime = req.body.prepTime;
+        const cookingTime = req.body.cookingTime;
+        const totalTime = req.body.totalTime;
+        const ingredients = JSON.parse(req.body.ingredients);
+        const directions = JSON.parse(req.body.directions);
+    
+        if(!imagePath){
+            const {image} = req.body
+            imagePath = image
+        }
+
+     await recipeService.edit(recipeId, { title, prepTime, cookingTime, totalTime, ingredients, directions, image: imagePath });
+        res.status(200).end();
+
+    } catch (err) {
+        res.status(403).send(err);
+    }
+
 }
 
 // exports.getOneWithLikes = async (req, res) => {
