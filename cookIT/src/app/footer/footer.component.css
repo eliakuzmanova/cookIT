@@ -7,9 +7,6 @@ footer{
  /* *TODO: position of the footer (at the end of the page without any space between and after it) */
 }
 
-footer{
-    margin-top: auto;
-}
 p{
     padding: 0;
     font-weight: 500;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailsService } from './details.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { IRecipe } from "../../interfaces/index"
 import { IUser } from 'src/app/interfaces';
 import { AuthService } from '../auth/auth.service';
@@ -17,8 +17,11 @@ export class DetailsComponent implements OnInit {
   loggedUser : IUser | undefined;
   isAuthor: boolean = false;
 
-  constructor(private route: ActivatedRoute, private detailService: DetailsService, private authService: AuthService,) { }
+  constructor(private route: ActivatedRoute, private router: Router, private detailService: DetailsService, private authService: AuthService,) { }
   ngOnInit() {  
+    if(!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
+      this.router.navigate(['/not-found'])
+    }
     this.recipeId = this.route.snapshot.params['id']
     this.detailService.getDetails(this.recipeId).subscribe(value => {
     this.recipe = value;

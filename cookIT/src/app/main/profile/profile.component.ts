@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from './profile.service';
 import { IUser } from "../../interfaces/index"
 import { AuthService } from '../auth/auth.service';
@@ -16,8 +16,11 @@ export class ProfileComponent implements OnInit {
   hasRecipes = false;
   loggedUser!: IUser | undefined;
 
-  constructor(private profileService: ProfileService, private route: ActivatedRoute, private authService: AuthService) {
+  constructor(private profileService: ProfileService, private router: Router , private route: ActivatedRoute, private authService: AuthService) {
     this.route.params.subscribe(params => this.ngOnInit())
+    if(!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
+      this.router.navigate(['/not-found'])
+    }
   }
 
   ngOnInit(): void {
