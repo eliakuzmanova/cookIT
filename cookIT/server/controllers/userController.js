@@ -44,7 +44,6 @@ exports.editProfile = async (req, res) => {
 
         const updatedUser = await userService.updateUserById(userId, { username, email, image: imagePath });
 
-     console.log(updatedUser);
         res.status(200).send(updatedUser);
 
     } catch (err) {

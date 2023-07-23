@@ -9,6 +9,7 @@ import { NotFoundComponent } from './main/not-found/not-found.component';
 import { CreateComponent } from './main/create/create.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
+import { EditRecipeComponent } from './main/edit-recipe/edit-recipe.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,10 @@ const routes: Routes = [
   {
     path:'create',
     component: CreateComponent,
-
+  },
+  {
+    path: 'recipe/edit/:id',
+    component: EditRecipeComponent,
   },
   {
     path: 'not-found',

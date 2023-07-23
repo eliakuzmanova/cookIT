@@ -27,7 +27,6 @@ export class DetailsComponent implements OnInit {
     this.isPluralLength = this.recipe.author.recipes.length > 1 ? true : false;
     this.loggedUser = this.authService.getUserInfo();
     this.isAuthor = this.loggedUser?._id == this.recipe?.author._id
-    console.log(this.isAuthor);
     
     })
   

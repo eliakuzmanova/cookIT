@@ -19,7 +19,7 @@
             <p class="time">{{recipe?.totalTime}} mins</p>
         </div>
     </div>
-    <a class="edit-btn" *ngIf="isAuthor" [routerLink]="['/edit/profile/', recipe?._id]">Edit your recipe</a>
+    <a class="edit-btn" *ngIf="isAuthor" [routerLink]="['/recipe/edit/', recipe?._id]">Edit your recipe</a>
     <div class="ingredients-container">
         <h2>Ingredients</h2>
         <ul>

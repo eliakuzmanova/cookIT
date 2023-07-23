@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { AuthenticateComponent } from './main/auth/authenticate/authenticate.component';
 import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
+import { EditRecipeComponent } from './main/edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EditProfileComponent } from './main/edit-profile/edit-profile.component
     LogoutComponent,
     AuthenticateComponent,
     EditProfileComponent,
+    EditRecipeComponent,
   ],
   imports: [
     BrowserModule,

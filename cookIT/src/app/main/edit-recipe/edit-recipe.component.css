@@ -1,0 +1,158 @@
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em auto;
+    border: 2px solid var(--light-yellow);
+    padding: 2em 0;
+}
+
+.container>h1 {
+    color: var(--black);
+    font-size: 3em;
+    margin: 0 0 0.6em 0;
+    letter-spacing: 0.2em;
+}
+.image-container{
+    height: 20em;
+    margin-bottom: 3em;
+}
+
+img {
+    border: 2px solid var(--light-yellow);
+    padding: 1em;
+    border-radius: 2em;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+
+}
+
+form>div:not(.image-container) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+}
+
+label {
+    color: var(--black);
+    letter-spacing: 0.1em;
+    font-size: 1.1em;
+    margin-bottom: 0.2em;
+}
+
+input {
+    margin-bottom: 1em;
+}
+
+input:not([type="file"]) {
+    padding: 0.5em 0.3em;
+    border: 1px solid var(--beige);
+    border-radius: 0.5em;
+}
+
+input:not([name="ingredient"], [name="direction"]) {
+    width: 80%;
+}
+
+input[name="ingredient"],
+input[name="direction"] {
+    width: 85%;
+    margin: 0;
+}
+
+form>div:last-of-type {
+    margin-bottom: 2.2em;
+}
+
+.add-btn {
+    font-size: 0.9em;
+    font-weight: 700;
+    background-color: var(--black);
+    color: var(--light-yellow);
+    padding: 0.3em 0.5em;
+    border-radius: 0.2em;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.add-btn:hover {
+    border: 2px solid var(--light-yellow);
+    font-size: 0.95em;
+}
+
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-label {
+    color: var(--black);
+    background-color: var(--light-yellow);
+    padding: 0.5em 1em;
+    align-self: start;
+    margin-bottom: 1em;
+    cursor: pointer;
+    border-radius: 0.4em;
+    font-size: 1.2em;
+    transition: all 0.1s ease-in-out;
+}
+
+.file-label:hover {
+    font-weight: 600;
+}
+
+form>button {
+    padding: 0.5em 1.5em;
+    font-weight: 600;
+    align-self: center;
+    border: none;
+    color: var(--black);
+    background-color: var(--beige);
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+form>button:hover {
+    color: var(--beige);
+    background-color: var(--black);
+
+}
+
+ol {
+    margin: 0 0 2em 0;
+    border: 1px solid var(--beige);
+    padding: 0.9em 2em;
+}
+
+ol li {
+    margin-bottom: 1em;
+}
+
+ol li p {
+    display: inline;
+}
+
+ol button {
+    display: inline;
+    padding: 0 0.7em;
+    color: var(--white);
+    background-color: var(--light-yellow);
+    border: none;
+    margin-left: 5%;
+
+}
