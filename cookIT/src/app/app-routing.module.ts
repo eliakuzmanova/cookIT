@@ -5,7 +5,7 @@ import { ProfileComponent } from './main/profile/profile.component';
 import { LoginComponent } from './main/auth/login/login.component';
 import { RegisterComponent } from './main/auth/register/register.component';
 import { DetailsComponent } from './main/details/details.component';
-import { NotFoundComponent } from './main/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateComponent } from './main/create/create.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
@@ -15,43 +15,51 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CatalogComponent
+    component: CatalogComponent,
+    
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    
   },
   {
     path: 'profile/:id',
     component: ProfileComponent,
+    
   },
   {
     path: 'edit/profile',
     component: EditProfileComponent,
+    
   },
   {
     path: 'details/:id',
-    component: DetailsComponent
+    component: DetailsComponent,
+    
   },
   {
     path:'create',
     component: CreateComponent,
+    
   },
   {
     path: 'recipe/edit/:id',
     component: EditRecipeComponent,
+    
   },
   {
     path: 'not-found',
-    component: NotFoundComponent
+    component: NotFoundComponent,
   },
   {
     path: 'logout',
-    component: LogoutComponent
+    component: LogoutComponent,
     
   },
   {
