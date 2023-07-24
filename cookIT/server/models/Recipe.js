@@ -28,19 +28,19 @@ const RecipeSchema = new mongoose.Schema({
         type: Number,
         require: true,
         min: [0 , "The Cooking time should be a positive number"],
-       max: [1100 , "The Cooking time can not be greater than 11 000 minutes "],
+       max: [11000 , "The Cooking time can not be greater than 11 000 minutes "],
     },
     ingredients:[{
         type: String,
         require: true,
         minLength: [0, "Too short ingredient"],
-        maxLength: [500, "Too long ingredient"]
+        maxLength: [300, "Too long ingredient"]
     }],
     directions:[{
         type: String,
         require: true,
         minLength: [0, "Too short direction"],
-        maxLength: [500, "Too long direction"]
+        maxLength: [300, "Too long direction"]
     }],
     author: {
         type: mongoose.Types.ObjectId,

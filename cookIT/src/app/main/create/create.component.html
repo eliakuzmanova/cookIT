@@ -2,23 +2,35 @@
     <h1>Create your own recipe</h1>
     <hr>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <p class="error" *ngIf="errors">{{errors}}</p>
         <label class="file-label" for="image">Select your recipe photo</label>
-        <input class="input-file" name="image" id="image" type="file" #file="ngModel" (change)="OnFileChange($event)" ngModel>
+        <input class="input-file" name="image" id="image" type="file" #file="ngModel" #imageInput="ngModel" required (change)="OnFileChange($event)" ngModel>
+        <p class="error" *ngIf="file.errors?.['required'] && file.touched">Image is required!</p>
 
         <label for="title">Title</label>
-        <input name="title" id="title" type="text" ngModel>
+        <input name="title" id="title" type="text" #titleInput="ngModel" ngModel required minlength="3" maxlength="40">
+        <p class="error" *ngIf="titleInput.errors?.['required'] && titleInput.touched">Title is required!</p>
+        <p class="error" *ngIf="titleInput.errors?.['minlength'] && titleInput.touched">Title should be at least 3 characters!</p>
+        <p class="error" *ngIf="titleInput.errors?.['maxlength'] && titleInput.touched">Title should be max 40 characters long!</p>
 
         <label for="prepTime">Prep Time</label>
-        <input class="time-input" name="prepTime" id="prepTime" type="number" ngModel>
+        <input class="time-input" name="prepTime" id="prepTime" type="number" #prepInput="ngModel" ngModel required min="1">
+        <p class="error" *ngIf="prepInput.errors?.['required'] && prepInput.touched">PrepTime is required!</p>
+        <p class="error" *ngIf="prepInput.errors?.['min'] && prepInput.touched">PrepTime should be a positive number!</p>
 
         <label for="cookingTime">Cooking Time</label>
-        <input class="time-input" name="cookingTime" id="cookingTime" type="number" ngModel>
+        <input class="time-input" name="cookingTime" id="cookingTime" type="number" #cookingInput="ngModel" ngModel required min="1">
+        <p class="error" *ngIf="cookingInput.errors?.['required'] && cookingInput.touched">CookingTime is required!</p>
+        <p class="error" *ngIf="cookingInput.errors?.['min'] && cookingInput.touched">CookingTime should be a positive number!</p>
 
         <label for="ingredient">Ingredient</label>
         <div>
-            <input name="ingredient" id="ingredient" type="text" ngModel #inputIngredients="ngModel">
+            <input name="ingredient" id="ingredient" type="text" ngModel  #inputIngredients="ngModel" required maxlength="300">
             <button type="button" class="add-btn btn-integrient" (click)="onAddIngredient($event)">Add</button> 
         </div>
+        <p class="error" *ngIf="inputIngredients.errors?.['required'] && inputIngredients.touched">Ingredients is required!</p>
+        <p class="error" *ngIf="inputIngredients.errors?.['min'] && inputIngredients.touched">Ingredients should be max 300 characters long!</p>
+        
         <ol *ngIf="ingredients.length > 0">
             <li *ngFor="let ingredient of ingredients; let i=index">
                 <p>{{ingredient}}</p>
@@ -27,9 +39,11 @@
         </ol>
         <label for="direction">Directions</label>
         <div>
-            <input  name="direction" id="direction" type="text" ngModel #inputDirections="ngModel">
+            <input  name="direction" id="direction" type="text" ngModel #inputDirections="ngModel" required maxlength="300">
             <button type="button" class="add-btn btn-direction" (click)="onAddDirection($event)">Add</button>
         </div>
+        <p class="error" *ngIf="inputDirections.errors?.['required'] && inputDirections.touched">Directions is required!</p>
+        <p class="error" *ngIf="inputDirections.errors?.['min'] && inputDirections.touched">Directions should be max 300 characters long!</p>
         <ol *ngIf="directions.length > 0">
             <li *ngFor="let direction of directions; let i=index">
                 <p>{{direction}}</p>

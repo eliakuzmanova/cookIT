@@ -14,7 +14,7 @@
     <p class="error" *ngIf="errors">{{errors}}</p>
     <div class="normal-input-container">
         <label for="username">Username</label>
-        <input name="username" id="username" type="text" #usernameInput="ngModel" ngModel [(ngModel)]="usernameValue"required >
+        <input name="username" id="username" type="text" #usernameInput="ngModel" ngModel [(ngModel)]="usernameValue"required minlength="3" >
         <p class="error" *ngIf="usernameInput.errors?.['required'] && usernameInput.touched">Username is required!</p>
         <p class="error" *ngIf="usernameInput.errors?.['minlength'] && usernameInput.touched">Username should be at least 3 characters</p>
     </div>

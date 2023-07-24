@@ -117,7 +117,7 @@ button {
     cursor: pointer;
 }
 
-input.ng-valid{
+input.ng-valid.ng-touched{
     border-left: 5px solid var(--blue);
 }
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { CreateService } from './create.service'
 import { AuthService } from '../auth/auth.service';
@@ -15,44 +15,42 @@ export class CreateComponent {
   @ViewChild("inputIngredients") inputIngredients!: NgModel
   @ViewChild("inputDirections") inputDirections!: NgModel
 
+  errors: String[] | any[] = [];
+
   image: File | undefined
   totalTime!: number
   ingredients: String[];
   directions: String[];
 
   constructor(private createService: CreateService, private authService: AuthService, private router: Router) {
-    
+
     this.ingredients = [],
       this.directions = []
   }
 
-  canActivate(){
-      
-    }
+  onAddIngredient(e: any) {
+ 
+      if (e.target.previousSibling.value.length > 0) {
+        this.ingredients.push(e.target.previousSibling.value);
+      }
 
-  onAddIngredient(e: any){
-
-    if(e.target.previousSibling.value.length > 0) {
-    this.ingredients.push(e.target.previousSibling.value);
+      this.inputIngredients.reset();
+ 
   }
 
-  this.inputIngredients.reset();
-
-  }
-
-  onAddDirection(e: any){
-
-    if(e.target.previousSibling.value.length > 0) {
-    this.directions.push(e.target.previousSibling.value);
-    }
+  onAddDirection(e: any) {
    
-    this.inputDirections.reset();
-    
+      if (e.target.previousSibling.value.length > 0) {
+        this.directions.push(e.target.previousSibling.value);
+      }
+
+      this.inputDirections.reset();
+  
   }
 
-  onRemoveStep(index: any, arrName: String){
+  onRemoveStep(index: any, arrName: String) {
 
-    (arrName=="ingredients"? this.ingredients: this.directions).splice(index, 1);
+    (arrName == "ingredients" ? this.ingredients : this.directions).splice(index, 1);
   }
 
   OnFileChange(e: any) {
@@ -60,12 +58,13 @@ export class CreateComponent {
   }
 
   onSubmit(form: NgForm): void {
+    try {
     if (form.invalid) { return; }
     form.value.image = this.image
 
     this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
     form.value.totalTime = this.totalTime
-    
+
     const formData = new FormData();
 
     formData.append("userId", this.authService.getUserInfo()._id)
@@ -73,17 +72,20 @@ export class CreateComponent {
     formData.append("title", form.value.title);
     formData.append("prepTime", form.value.prepTime);
     formData.append("cookingTime", form.value.cookingTime);
-    formData.append("totalTime",  form.value.totalTime);
+    formData.append("totalTime", form.value.totalTime);
     formData.append("ingredients", JSON.stringify(this.ingredients));
     formData.append("directions", JSON.stringify(this.directions));
- 
+
     this.createService.createRecipe(formData).subscribe({
       next: (v) => console.log('HTTP response', v),
-      error: (err) => console.log('HTTP Error', err),
+      error: (err) => {throw new Error(err)},
       complete: () => {
         this.router.navigate(["/"])
       }
     });
+  } catch (err: any) {
+    this.errors.push(err)
+  }
 
   }
 }
