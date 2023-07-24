@@ -4,11 +4,11 @@
         <ul>    
             
             <li><a class="links" routerLink="/">Catalog</a></li>
-            <li *ngIf="!isEmpty"><a class="links" routerLink="/login">Login</a></li>
-            <li *ngIf="!isEmpty"><a class="links" routerLink="/register">Register</a></li>
-            <li *ngIf="isEmpty"><a class="links" [routerLink]="['/profile/', isEmpty?._id]">Profile</a></li> 
-            <li *ngIf="isEmpty"><a class="links" routerLink="/create">Create</a></li>
-            <li *ngIf="isEmpty"><a class="links" routerLink="/logout">Logout</a></li>   
+            <li *ngIf="!isLogged"><a class="links" routerLink="/login">Login</a></li>
+            <li *ngIf="!isLogged"><a class="links" routerLink="/register">Register</a></li>
+            <li *ngIf="isLogged"><a class="links" [routerLink]="['/profile/', isLogged?._id]">Profile</a></li> 
+            <li *ngIf="isLogged"><a class="links" routerLink="/create">Create</a></li>
+            <li *ngIf="isLogged"><a class="links" routerLink="/logout">Logout</a></li>   
         </ul>
     </nav>
 </header>

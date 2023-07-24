@@ -1,6 +1,6 @@
-import { Injectable} from '@angular/core';
+import { Injectable, inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
@@ -67,12 +67,12 @@ export class AuthService{
   getUserInfo() {
     const persistedStateSerialized = localStorage.getItem("auth");
 
-    if (persistedStateSerialized) {
-      const persistedState = JSON.parse(persistedStateSerialized);
+    if (persistedStateSerialized && Object.keys(persistedStateSerialized).length > 0 &&persistedStateSerialized != "{}" ) {
+      const persistedState = JSON.parse(persistedStateSerialized!);
       this.authenticateComponent.isAuthenticated$$.next(persistedState)
       return persistedState;
     }
-
+    this.authenticateComponent.isAuthenticated$$.next(undefined)
     return undefined;
   }
 
@@ -82,5 +82,31 @@ export class AuthService{
 
   };
 
-
 }
+
+export function authenticationGuard (): CanActivateFn {
+  return () => {
+    const authService: AuthService = inject(AuthService);
+    const user = authService.getUserInfo()
+    if (user) {
+      return true;
+    }
+    const router: Router = inject(Router);
+    router.navigate(['/login']);
+    return false;
+  };
+}
+
+export function isGuest (): CanActivateFn {
+  return () => {
+    const authService: AuthService = inject(AuthService);
+    const user = authService.getUserInfo()
+    if (user) {
+      const router: Router = inject(Router);
+      router.navigate(['/']);
+      return false;
+    }
+    return true;
+  };
+}
+

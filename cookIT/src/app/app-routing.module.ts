@@ -10,6 +10,7 @@ import { CreateComponent } from './main/create/create.component';
 import { LogoutComponent } from './main/auth/logout/logout.component';
 import { EditProfileComponent } from './main/edit-profile/edit-profile.component';
 import { EditRecipeComponent } from './main/edit-recipe/edit-recipe.component';
+import { authenticationGuard, isGuest } from './main/auth/auth.service';
 
 const routes: Routes = [
   {
@@ -21,12 +22,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    
+    canActivate: [isGuest()]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    
+    canActivate: [isGuest()]
   },
   {
     path: 'profile/:id',
@@ -36,7 +37,7 @@ const routes: Routes = [
   {
     path: 'edit/profile',
     component: EditProfileComponent,
-    
+    canActivate: [authenticationGuard()]
   },
   {
     path: 'details/:id',
@@ -46,12 +47,12 @@ const routes: Routes = [
   {
     path:'create',
     component: CreateComponent,
-    
+    canActivate: [authenticationGuard()]
   },
   {
     path: 'recipe/edit/:id',
     component: EditRecipeComponent,
-    
+    canActivate: [authenticationGuard()]
   },
   {
     path: 'not-found',
@@ -60,13 +61,14 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-    
+    canActivate: [authenticationGuard()]
   },
   {
     path: '**',
     redirectTo: '/not-found'
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
