@@ -7,11 +7,3 @@ exports.getOne = (RecipeId) => Recipe.findById(RecipeId).populate("author").lean
 exports.getAll = () => Recipe.find({}).populate("author").lean();
 
 exports.edit = (id, data) => Recipe.findByIdAndUpdate(id, data).lean();
-
-// exports.getOneWithLikes =  RecipeId) => Recipe.findById RecipeId).populate("likes").lean();
-
-// exports.getOneWithRel =  RecipeId) => Recipe.findById RecipeId).lean();
-
-// exports.getOneWithComments =  RecipeId) => Recipe.findById RecipeId).populate("comments.user").lean();
-
-// exports.delete = (id) => Recipe.findByIdAndRemove(id)

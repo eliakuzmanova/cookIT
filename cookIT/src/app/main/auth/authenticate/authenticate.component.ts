@@ -9,9 +9,7 @@ import { Subject } from 'rxjs';
 export class AuthenticateComponent {
   isAuthenticated$$: Subject<any> = new Subject();
 
-  constructor() {
-   
-  }
+  constructor() {}
 }
 
 

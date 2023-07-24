@@ -17,13 +17,18 @@ export class ProfileComponent implements OnInit {
   loggedUser!: IUser | undefined;
 
   constructor(private profileService: ProfileService, private router: Router , private route: ActivatedRoute, private authService: AuthService) {
+    try{
     this.route.params.subscribe(params => this.ngOnInit())
     if(!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
       this.router.navigate(['/not-found'])
     }
+  }catch(err: any) {
+    throw new Error(err)
+  }
   }
 
   ngOnInit(): void {
+    try{
     this.loggedUser = this.authService.getUserInfo()
 
     if(!this.loggedUser || this.route.snapshot.params['id'] != this.loggedUser?._id ) {
@@ -42,6 +47,9 @@ export class ProfileComponent implements OnInit {
 
       })
     })
+  }catch(err: any) {
+    throw new Error(err)
+  }
 
   }
 }

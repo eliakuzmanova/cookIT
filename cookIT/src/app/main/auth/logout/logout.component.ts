@@ -13,6 +13,10 @@ export class LogoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    try{
     this.authService.onLogout()
+    }catch(err: any) {
+      throw new Error(err)
+    }
   }
 }

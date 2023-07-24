@@ -19,6 +19,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private detailService: DetailsService, private authService: AuthService,) { }
   ngOnInit() {  
+    try{
     if(!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
       this.router.navigate(['/not-found'])
     }
@@ -32,7 +33,9 @@ export class DetailsComponent implements OnInit {
     this.isAuthor = this.loggedUser?._id == this.recipe?.author._id
     
     })
-  
+  }catch(err: any) {
+    throw new Error(err)
+  }
     
   }
 }
