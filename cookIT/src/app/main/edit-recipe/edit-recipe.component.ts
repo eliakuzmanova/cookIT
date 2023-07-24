@@ -101,6 +101,20 @@ export class EditRecipeComponent {
       this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
       form.value.totalTime = this.totalTime
 
+      if(this.ingredients.length == 0){
+        this.errors.push("Ingredients is required")
+        return
+      } else {
+        this.errors.push("")
+      }
+  
+      if(this.directions.length == 0){
+        this.errors.push("Directions is required")
+        return
+      } else {
+        this.errors.push("")
+      }
+
       const formData = new FormData();
 
       formData.append("recipeId", this.recipeId)

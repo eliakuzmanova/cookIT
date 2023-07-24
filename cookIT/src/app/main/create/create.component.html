@@ -3,7 +3,7 @@
     <hr>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <p class="error" *ngIf="errors">{{errors}}</p>
-        <label class="file-label" for="image">{{selectedImage ? "Selected photo" : "Select your profile photo"}}</label>
+        <label class="file-label" for="image">{{selectedImage ? "Selected your recipe photo" : "Select your recipe photo"}}</label>
         <input class="input-file" name="image" id="image" type="file" #file="ngModel" #imageInput="ngModel" required (change)="OnFileChange($event)" ngModel>
         <div *ngIf="selectedImage" class="image-selected-container" >
             <p *ngIf="selectedImage">{{selectedImage}}</p>
