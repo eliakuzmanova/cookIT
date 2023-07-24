@@ -14,6 +14,8 @@ export class EditProfileComponent implements OnInit {
 
   @ViewChild("form") form!: NgForm;
 
+  errors: String[] | any[] = [];
+
   image: File | undefined;
   userImage! : string;
   user!: IUser;
@@ -24,10 +26,14 @@ export class EditProfileComponent implements OnInit {
 constructor(private authService: AuthService ,private router: Router, private editService: EditService) {}
 
   ngOnInit(): void {
+    try{
     this.user = this.authService.getUserInfo()
     this.userImage = `http://localhost:5750/${this.user.image}`
     this.usernameValue = this.user.username
     this.emailValue = this.user.email
+    }catch (err:any) {
+      this.errors.push(err)
+    }
   }
 
 

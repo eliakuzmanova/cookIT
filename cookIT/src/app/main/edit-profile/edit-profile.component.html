@@ -3,21 +3,26 @@
     <hr>
     <img [attr.src]="userImage" alt={{user.username}}>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
         <div class="file-container">
         <label class="file-label" for="image">{{selectedImage ? "Selected photo" : "Select your profile photo"}}</label>
         <input class="input-file" name="image" id="image" type="file" #file="ngModel" (change)="OnFileChange($event)" ngModel>
-        
     </div>
     <div *ngIf="selectedImage" class="image-selected-container" >
         <p *ngIf="selectedImage">{{selectedImage}}</p>
     </div>
+    <p class="error" *ngIf="errors">{{errors}}</p>
     <div class="normal-input-container">
         <label for="username">Username</label>
-        <input name="username" id="username" type="text" ngModel [(ngModel)]="usernameValue" >
+        <input name="username" id="username" type="text" #usernameInput="ngModel" ngModel [(ngModel)]="usernameValue"required >
+        <p class="error" *ngIf="usernameInput.errors?.['required'] && usernameInput.touched">Username is required!</p>
+        <p class="error" *ngIf="usernameInput.errors?.['minlength'] && usernameInput.touched">Username should be at least 3 characters</p>
     </div>
     <div class="normal-input-container">
         <label for="email">Email</label>
-        <input name="email" id="email" type="text" ngModel [(ngModel)]="emailValue" >
+        <input name="email" id="email" type="text" #emailInput="ngModel" ngModel [(ngModel)]="emailValue"required email>
+        <p class="error" *ngIf="emailInput.errors?.['required'] && emailInput.touched">Email is required!</p>
+        <p class="error" *ngIf="emailInput.errors?.['email'] && emailInput.touched">The email is not correct!</p>
     </div>
          
         <button type="submit" [disabled]="form.invalid? true: false">Edit</button>

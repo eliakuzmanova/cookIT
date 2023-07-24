@@ -6,9 +6,9 @@
         <form #form="ngForm" (ngSubmit)="onSubmit(form)">
             <p class="error" *ngIf="errors">{{errors}}</p>
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" #emailInput="ngModel" ngModel required>
+            <input type="text" name="email" id="email" #emailInput="ngModel" ngModel required email>
             <p class="error" *ngIf="emailInput.errors?.['required'] && emailInput.touched">Email is required!</p>
-
+            <p class="error" *ngIf="emailInput.errors?.['email'] && emailInput.touched">The email is not correct!</p>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" #passwordInput="ngModel" ngModel required>
             <p class="error" *ngIf="passwordInput.errors?.['required'] && passwordInput.touched">Password is required!</p>
