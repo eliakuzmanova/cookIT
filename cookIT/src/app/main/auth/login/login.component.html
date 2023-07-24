@@ -4,12 +4,14 @@
         <p>Login to see your saved receipts</p>
         <hr>
         <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-
+            <p class="error" *ngIf="errors">{{errors}}</p>
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" ngModel>
+            <input type="text" name="email" id="email" #emailInput="ngModel" ngModel required>
+            <p class="error" *ngIf="emailInput.errors?.['required'] && emailInput.touched">Email is required!</p>
 
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" ngModel>
+            <input type="password" name="password" id="password" #passwordInput="ngModel" ngModel required>
+            <p class="error" *ngIf="passwordInput.errors?.['required'] && passwordInput.touched">Password is required!</p>
 
             <button type="submit" [disabled]="form.invalid? true: false">Login</button>
         </form>
