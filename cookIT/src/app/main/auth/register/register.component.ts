@@ -8,25 +8,34 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent {
 
- @ViewChild("form") form!: NgForm;
+  @ViewChild("form") form!: NgForm;
+  errors: String[] | any[] = [];
 
- constructor(private authService: AuthService) {
+  constructor(private authService: AuthService) {
 
- }
-
- onSubmit(form: NgForm): void{
-  
-  if (form.invalid) { return; }
-
-  if(form.value.password != form.value["confirm-password"]) {
-    throw new Error("Passwords do not match");
   }
 
-  
-  this.authService.onRegister(
-    form.value.username, 
-    form.value.email, 
-    form.value.password)
+  onSubmit(form: NgForm): void {
+  try{
 
- }
+    if (form.invalid) { return; }
+
+    if (form.value.password != form.value["confirm-password"]) {
+      this.errors.push("Passwords do not match")
+    } else {
+      this.errors = [];
+    }
+
+
+    this.authService.onRegister(
+      form.value.username,
+      form.value.email,
+      form.value.password
+      )
+   
+  } catch (err:any) {
+    this.errors.push(err)
+  }
+  } 
+
 }
