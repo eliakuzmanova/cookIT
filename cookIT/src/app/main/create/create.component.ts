@@ -21,6 +21,7 @@ export class CreateComponent {
   totalTime!: number
   ingredients: String[];
   directions: String[];
+  selectedImage: string | undefined;
 
   constructor(private createService: CreateService, private authService: AuthService, private router: Router) {
 
@@ -55,6 +56,11 @@ export class CreateComponent {
 
   OnFileChange(e: any) {
     this.image = e.target.files[0]
+    if(e.target.files[0]) {
+      this.selectedImage = e.target.files[0].name;
+      } else {
+        this.selectedImage = undefined;
+      }
   }
 
   onSubmit(form: NgForm): void {
@@ -64,7 +70,20 @@ export class CreateComponent {
 
     this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
     form.value.totalTime = this.totalTime
+    if(this.ingredients.length == 0){
+      this.errors.push("Ingredients is required")
+      return
+    } else {
+      this.errors.push("")
+    }
 
+    if(this.directions.length == 0){
+      this.errors.push("Directions is required")
+      return
+    } else {
+      this.errors.push("")
+    }
+    
     const formData = new FormData();
 
     formData.append("userId", this.authService.getUserInfo()._id)

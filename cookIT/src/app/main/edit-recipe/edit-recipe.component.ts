@@ -17,12 +17,14 @@ export class EditRecipeComponent {
   @ViewChild("inputIngredients") inputIngredients!: NgModel
   @ViewChild("inputDirections") inputDirections!: NgModel
 
+  errors: String[] | any[] = [];
+
   image: File | undefined
   defaultImage!: string;
   totalTime!: number
   ingredients: String[] = [];
   directions: String[] = [];
-  recipeId: string;
+  recipeId!: string;
   recipe!: IRecipe;
   detailService: any;
   isPluralLength: boolean = false;
@@ -31,24 +33,28 @@ export class EditRecipeComponent {
   titleValue!: string;
   prepTimeValue!: number;
   cookingTimeValue!: number;
+  selectedImage: string | undefined;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private editRecipeService: EditRecipeService, private detailsService: DetailsService) {
- 
-    this.recipeId = this.route.snapshot.params['id']
+    try {
+      this.recipeId = this.route.snapshot.params['id']
 
-    this.detailsService.getDetails(this.recipeId).subscribe(value => {
+      this.detailsService.getDetails(this.recipeId).subscribe(value => {
 
-      this.recipe = value;
-      this.defaultImage = `http://localhost:5750/${this.recipe.image}`
-    
-      this.isPluralLength = this.recipe.author.recipes.length > 1 ? true : false;
-      this.loggedUser = this.authService.getUserInfo();
-      this.ingredients = this.recipe.ingredients;
-      this.directions = this.recipe.directions;
-      this.titleValue = this.recipe.title;
-      this.prepTimeValue = this.recipe.prepTime;
-      this.cookingTimeValue = this.recipe.cookingTime;
-    })
+        this.recipe = value;
+        this.defaultImage = `http://localhost:5750/${this.recipe.image}`
+
+        this.isPluralLength = this.recipe.author.recipes.length > 1 ? true : false;
+        this.loggedUser = this.authService.getUserInfo();
+        this.ingredients = this.recipe.ingredients;
+        this.directions = this.recipe.directions;
+        this.titleValue = this.recipe.title;
+        this.prepTimeValue = this.recipe.prepTime;
+        this.cookingTimeValue = this.recipe.cookingTime;
+      })
+    } catch (err: any) {
+      this.errors.push(err)
+    }
   }
 
   onAddIngredient(e: any) {
@@ -78,35 +84,43 @@ export class EditRecipeComponent {
 
   OnFileChange(e: any) {
     this.image = e.target.files[0]
-  }
+    if(e.target.files[0]) {
+      this.selectedImage = e.target.files[0].name;
+      } else {
+        this.selectedImage = undefined;
+      }
+    }
 
   onSubmit(form: NgForm): void {
-    if (form.invalid) { return; }
-    if(this.image){
-      form.value.image = this.image
+    try {
+      if (form.invalid) { return; }
+      if (this.image) {
+        form.value.image = this.image
       }
 
-    this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
-    form.value.totalTime = this.totalTime
+      this.totalTime = Number(form.value.prepTime) + Number(form.value.cookingTime)
+      form.value.totalTime = this.totalTime
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    formData.append("recipeId", this.recipeId)
-    formData.append("image", form.value.image? form.value.image: this.recipe.image);
-    formData.append("title", form.value.title);
-    formData.append("prepTime", form.value.prepTime);
-    formData.append("cookingTime", form.value.cookingTime);
-    formData.append("totalTime", form.value.totalTime);
-    formData.append("ingredients", JSON.stringify(this.ingredients));
-    formData.append("directions", JSON.stringify(this.directions));
+      formData.append("recipeId", this.recipeId)
+      formData.append("image", form.value.image ? form.value.image : this.recipe.image);
+      formData.append("title", form.value.title);
+      formData.append("prepTime", form.value.prepTime);
+      formData.append("cookingTime", form.value.cookingTime);
+      formData.append("totalTime", form.value.totalTime);
+      formData.append("ingredients", JSON.stringify(this.ingredients));
+      formData.append("directions", JSON.stringify(this.directions));
 
-    this.editRecipeService.editRecipe(formData).subscribe({
-      next: (v) => console.log('HTTP response', v),
-      error: (err) => console.log('HTTP Error', err),
-      complete: () => {
-        this.router.navigate([`/details/${this.recipeId}`])
-      }
-    });
-
+      this.editRecipeService.editRecipe(formData).subscribe({
+        next: (v) => console.log('HTTP response', v),
+        error: (err) => {throw new Error(err)},
+        complete: () => {
+          this.router.navigate([`/details/${this.recipeId}`])
+        }
+      });
+    } catch (err: any) {
+      this.errors.push(err)
+    }
   }
 }

@@ -3,8 +3,11 @@
     <hr>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <p class="error" *ngIf="errors">{{errors}}</p>
-        <label class="file-label" for="image">Select your recipe photo</label>
+        <label class="file-label" for="image">{{selectedImage ? "Selected photo" : "Select your profile photo"}}</label>
         <input class="input-file" name="image" id="image" type="file" #file="ngModel" #imageInput="ngModel" required (change)="OnFileChange($event)" ngModel>
+        <div *ngIf="selectedImage" class="image-selected-container" >
+            <p *ngIf="selectedImage">{{selectedImage}}</p>
+        </div>
         <p class="error" *ngIf="file.errors?.['required'] && file.touched">Image is required!</p>
 
         <label for="title">Title</label>
@@ -25,11 +28,10 @@
 
         <label for="ingredient">Ingredient</label>
         <div>
-            <input name="ingredient" id="ingredient" type="text" ngModel  #inputIngredients="ngModel" required maxlength="300">
+            <input name="ingredient" id="ingredient" type="text" ngModel  #inputIngredients="ngModel" [ngClass]="[ingredients.length> 0 ? 'valid' : 'invalid']">
             <button type="button" class="add-btn btn-integrient" (click)="onAddIngredient($event)">Add</button> 
         </div>
-        <p class="error" *ngIf="inputIngredients.errors?.['required'] && inputIngredients.touched">Ingredients is required!</p>
-        <p class="error" *ngIf="inputIngredients.errors?.['min'] && inputIngredients.touched">Ingredients should be max 300 characters long!</p>
+
         
         <ol *ngIf="ingredients.length > 0">
             <li *ngFor="let ingredient of ingredients; let i=index">
@@ -39,11 +41,10 @@
         </ol>
         <label for="direction">Directions</label>
         <div>
-            <input  name="direction" id="direction" type="text" ngModel #inputDirections="ngModel" required maxlength="300">
+            <input  name="direction" id="direction" type="text" ngModel #inputDirections="ngModel"  [ngClass]="[directions.length> 0 ? 'valid' : 'invalid']">
             <button type="button" class="add-btn btn-direction" (click)="onAddDirection($event)">Add</button>
         </div>
-        <p class="error" *ngIf="inputDirections.errors?.['required'] && inputDirections.touched">Directions is required!</p>
-        <p class="error" *ngIf="inputDirections.errors?.['min'] && inputDirections.touched">Directions should be max 300 characters long!</p>
+     
         <ol *ngIf="directions.length > 0">
             <li *ngFor="let direction of directions; let i=index">
                 <p>{{direction}}</p>
