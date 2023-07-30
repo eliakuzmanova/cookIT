@@ -16,6 +16,7 @@
 ### For client
 
 - Angular
+- Typescript
 - Javascript
 - HTML5
 - CSS
