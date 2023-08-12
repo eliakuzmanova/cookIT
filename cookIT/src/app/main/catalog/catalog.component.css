@@ -93,3 +93,15 @@ img:hover {
     background-color: var(--beige);
 
 }
+
+.no-recipes{
+    font-weight: 700;
+    font-size: 2em;
+    font-size: 500;
+    background-color: var(--beige);
+    text-align: center;
+    padding: 2.5em 2em;
+    width: 100%;
+    border-radius: 0.5em;
+
+}

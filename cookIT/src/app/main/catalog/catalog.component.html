@@ -1,4 +1,5 @@
 <div class="container">
+    <p class="no-recipes" *ngIf="recipes">There are no recipes yet...</p>
     <div *ngFor="let recipe of recipes" class="card">
         <div class="image-container">
             <img [attr.src]="recipe.image" alt={{recipe.title}}>

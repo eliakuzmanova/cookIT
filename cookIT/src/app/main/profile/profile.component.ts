@@ -16,40 +16,40 @@ export class ProfileComponent implements OnInit {
   hasRecipes = false;
   loggedUser!: IUser | undefined;
 
-  constructor(private profileService: ProfileService, private router: Router , private route: ActivatedRoute, private authService: AuthService) {
-    try{
-    this.route.params.subscribe(params => this.ngOnInit())
-    if(!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
-      this.router.navigate(['/not-found'])
+  constructor(private profileService: ProfileService, private router: Router, private route: ActivatedRoute, private authService: AuthService) {
+    try {
+      this.route.params.subscribe(params => this.ngOnInit())
+      if (!this.route.snapshot.params['id'] || this.route.snapshot.params['id'].length == 0) {
+        this.router.navigate(['/not-found'])
+      }
+    } catch (err: any) {
+      throw new Error(err)
     }
-  }catch(err: any) {
-    throw new Error(err)
-  }
   }
 
   ngOnInit(): void {
-    try{
-    this.loggedUser = this.authService.getUserInfo()
+    try {
+      this.loggedUser = this.authService.getUserInfo()
 
-    if(!this.loggedUser || this.route.snapshot.params['id'] != this.loggedUser?._id ) {
-      this.id = this.route.snapshot.params['id']
-    } else {
-      this.id = this.loggedUser?._id
-    }
+      if (!this.loggedUser || this.route.snapshot.params['id'] != this.loggedUser?._id) {
+        this.id = this.route.snapshot.params['id']
+      } else {
+        this.id = this.loggedUser?._id
+      }
 
-    this.profileService.getUserById(this.id).subscribe(value => {
-      this.user = value;
-      this.user!.image = `http://localhost:5750/${this.user!.image}`
-      this.user!.recipes.map((recipe) => {
-        recipe.image = `http://localhost:5750/${recipe.image}`;
-        this.isPluralLength = this.user!.recipes.length > 1 ? true : false;
-        this.hasRecipes = this.user!.recipes.length < 1 ? true : false;
+      this.profileService.getUserById(this.id).subscribe(value => {
+        this.user = value;
+        this.user!.image = `http://localhost:5750/${this.user!.image}`
+        this.user!.recipes.map((recipe) => {
+          recipe.image = `http://localhost:5750/${recipe.image}`;
+          this.isPluralLength = this.user!.recipes.length > 1 ? true : false;
+          this.hasRecipes = this.user!.recipes.length < 1 ? true : false;
 
+        })
       })
-    })
-  }catch(err: any) {
-    throw new Error(err)
-  }
+    } catch (err: any) {
+      throw new Error(err)
+    }
 
   }
 }

@@ -8,6 +8,7 @@ import { IRecipe } from "../../interfaces/index"
 })
 export class CatalogComponent implements OnInit {
 
+  hasRecipes: boolean = false;
   recipes: IRecipe[] = [];
   constructor(private catalogService: CatalogService) {
 
@@ -20,6 +21,7 @@ export class CatalogComponent implements OnInit {
         recipe.image = `http://localhost:5750/${recipe.image}`;
       })
      })
+     this.hasRecipes = this.recipes.length < 1 ? true : false;
   }catch(err: any) {
     throw new Error(err)
   }
