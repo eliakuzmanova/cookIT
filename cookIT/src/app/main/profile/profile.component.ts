@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
         this.user!.recipes.map((recipe) => {
           recipe.image = `http://localhost:5750/${recipe.image}`;
           this.isPluralLength = this.user!.recipes.length > 1 ? true : false;
-          this.hasRecipes = this.user!.recipes.length < 1 ? true : false;
+          this.hasRecipes = this.user!.recipes.length > 0 ? true : false;
 
         })
       })

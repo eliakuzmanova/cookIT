@@ -21,7 +21,7 @@
     <div class="recipes-container">
         <h2>&#8226;Recipes&#8226;</h2>
         <div class="recipes">
-            <p class="no-recipes" *ngIf="hasRecipes">There are no recipes yet...</p>
+            <p class="no-recipes" *ngIf="!hasRecipes">There are no recipes yet...</p>
             <div class="card" *ngFor="let recipe of user?.recipes">
                 <div class="image-container">
                     <img [attr.src]="recipe.image" alt={{recipe.title}}>
