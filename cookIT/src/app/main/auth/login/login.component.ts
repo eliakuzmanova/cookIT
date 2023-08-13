@@ -48,6 +48,7 @@ export class LoginComponent {
           },
           complete: () => {
             this.authenticateComponent.isAuthenticated$$.next(this.user)
+            this.errors.splice(0, this.errors.length)
             this.router.navigate(["/"])
            
           }

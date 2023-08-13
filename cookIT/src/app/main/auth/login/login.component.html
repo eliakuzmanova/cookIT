@@ -4,7 +4,7 @@
         <p>Login to see your saved receipts</p>
         <hr>
         <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-            <p class="error" *ngIf="errors">{{errors}}</p>
+            <p class="error" *ngIf="errors">{{errors[0]}}</p>
             <label for="email">Email</label>
             <input type="text" name="email" id="email" #emailInput="ngModel" ngModel required email>
             <p class="error" *ngIf="emailInput.errors?.['required'] && emailInput.touched">Email is required!</p>
