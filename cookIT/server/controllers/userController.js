@@ -26,7 +26,7 @@ exports.getOneById = async (req, res) => {
 exports.editProfile = async (req, res) => {
 
     try {
-       console.log("hello");
+   
         let imagePath;
 
         imagePath = req.file?.path
