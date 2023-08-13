@@ -45,7 +45,7 @@ export class AuthService {
 
             this.setLocalStorageState("auth", this.user)
           },
-          error: (err) => { throw new Error(err) },
+          error: (err) => {  throw new Error(err) ;},
           complete: () => {
             this.authenticateComponent.isAuthenticated$$.next(this.user)
             this.router.navigate(["/"])
